@@ -1,0 +1,30 @@
+{
+  "gastgeber": {
+    "name": "Gastgeber",
+    "role": "mitglied",
+    "amountChf": null,
+    "requireApproval": true,
+    "description": "Für Eigentümerinnen und Eigentümer, die selbst vermieten."
+  },
+  "property-manager": {
+    "name": "Property Manager",
+    "role": "mitglied",
+    "amountChf": null,
+    "requireApproval": true,
+    "description": "Für Unternehmen, die Objekte für andere betreiben."
+  },
+  "regionalgruppe": {
+    "name": "Regionalgruppe",
+    "role": "mitglied",
+    "amountChf": null,
+    "requireApproval": true,
+    "description": "Für Gastgeber-Zusammenschlüsse in Kanton oder Gemeinde."
+  },
+  "foerdermitglied": {
+    "name": "Fördermitglied",
+    "role": "foerdermitglied",
+    "amountChf": null,
+    "requireApproval": true,
+    "description": "Für Technologie-, Service- und Plattformpartner. Ohne Stimmrecht."
+  }
+}
