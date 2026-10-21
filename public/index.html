@@ -85,18 +85,21 @@
 <section id="regeln" class="on-light">
   <div class="wrap">
     <div class="sec-head">
-      <h2 class="display h-l">Was gilt bei dir?</h2>
-      <p class="lead">Die Schweiz kennt kein einheitliches Gesetz. Regeln machen Bund, Kantone und Gemeinden. Wähle einen Kanton und sieh, was dich betrifft.</p>
+      <h2 class="display h-l">Regelradar: Was gilt bei dir?</h2>
+      <p class="lead">Die Schweiz kennt kein einheitliches Gesetz. Regeln machen Bund, Kantone und Gemeinden. Wähle einen Kanton und klappe die Gemeinden auf. Jede Aussage ist mit einer Quelle belegt. <span id="standDatum" class="stand"></span></p>
     </div>
     <div class="rules-grid">
       <div>
         <div class="tiles" id="tiles" role="group" aria-label="Kantone"></div>
         <div class="legend" aria-hidden="true">
           <span><i style="background:var(--red)"></i>Beschränkung</span>
-          <span><i style="background:#000"></i>Abgaben</span>
+          <span><i style="background:#000"></i>Registrierung / Bewilligung</span>
+          <span><i style="background:#5b5b5b"></i>Abgaben via Plattform</span>
           <span><i style="background:#fff;border-color:#000"></i>In Diskussion</span>
-          <span><i style="background:var(--grey)"></i>Daten folgen</span>
+          <span><i style="background:var(--grey)"></i>Keine Sonderregel bekannt</span>
+          <span><i style="background:var(--grey);position:relative"><b style="position:absolute;right:1px;bottom:1px;width:5px;height:5px;border-radius:50%;background:var(--red)"></b></i>Gemeinderegeln vorhanden</span>
         </div>
+        <div class="bund-box" id="bund" aria-label="Bundesebene"></div>
       </div>
       <div class="rule-panel" id="panel" aria-live="polite"></div>
     </div>
