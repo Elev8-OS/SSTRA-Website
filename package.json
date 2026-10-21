@@ -3,19 +3,27 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "engines": { "node": ">=20" },
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "start": "node server.js",
     "dev": "node --watch server.js",
-    "test": "node --test \"test/*.test.js\""
+    "test": "node --test \"test/*.test.js\"",
+    "build:map": "node scripts/build-map.mjs",
+    "postinstall": "node scripts/build-map.mjs"
   },
   "dependencies": {
+    "compression": "^1.8.2",
     "cookie-parser": "^1.4.7",
     "express": "^4.21.2",
     "express-rate-limit": "^7.5.0",
     "helmet": "^8.0.0",
     "jsonwebtoken": "^9.0.2",
     "marked": "^15.0.7",
-    "stripe": "^17.7.0"
+    "stripe": "^17.7.0",
+    "swiss-maps": "^4.7.0",
+    "topojson-client": "^3.1.0",
+    "topojson-simplify": "^3.0.3"
   }
 }
