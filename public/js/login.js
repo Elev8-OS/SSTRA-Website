@@ -1,4 +1,5 @@
 (function () {
+  fetch('/api/demo-status').then(function (r) { return r.ok ? r.json() : null; }).then(function (d) { if (d && d.demo) document.getElementById('demoHint').hidden = false; }).catch(function () {});
   if (/bezahlt=1/.test(location.search)) document.getElementById('paid').hidden = false;
   var f = document.getElementById('loginForm'), msg = f.querySelector('.form-msg'), btn = f.querySelector('button');
   f.addEventListener('submit', async function (e) {
