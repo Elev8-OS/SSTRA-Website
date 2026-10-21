@@ -1,0 +1,7 @@
+[
+  { "slug": "kodex", "title": "Verhaltenskodex", "summary": "Die Selbstverpflichtung aller Mitglieder", "file": "kodex.md", "roles": ["mitglied", "foerdermitglied"] },
+  { "slug": "steuern-kurtaxe", "title": "Steuern und Kurtaxe: Checkliste", "summary": "Was Gastgeber beachten müssen (Platzhalter)", "file": "steuern-kurtaxe.md", "roles": ["mitglied"] },
+  { "slug": "gemeinde-toolkit", "title": "Toolkit für Gespräche mit Gemeinden", "summary": "Argumentarien und Briefvorlagen (Platzhalter)", "file": "gemeinde-toolkit.md", "roles": ["mitglied"] },
+  { "slug": "partner-info", "title": "Informationen für Fördermitglieder", "summary": "Sichtbarkeit, Anlässe, Ansprechpersonen", "file": "partner-info.md", "roles": ["foerdermitglied"] },
+  { "slug": "protokoll-vorlage", "title": "Vorlage Vorstandsprotokoll", "summary": "Struktur für Sitzungsprotokolle", "file": "protokoll-vorlage.md", "roles": [], "board": true }
+]
