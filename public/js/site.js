@@ -9,56 +9,63 @@
   document.querySelectorAll('nav.main a').forEach(function(a){a.addEventListener('click',function(){header.classList.remove('open');btn.setAttribute('aria-expanded','false');btn.textContent='Menü';});});
 })();
 
-/* ---------- Regelkarte (Kacheln = schematische Kantonskarte) ---------- */
+/* ---------- Regelradar (Daten aus /data/regeln.json) ---------- */
 (function(){
-  /* Position [Zeile, Spalte] pro Kanton */
+  var tiles=document.getElementById('tiles'),panel=document.getElementById('panel'),bund=document.getElementById('bund');
+  if(!tiles||!panel)return;
   var pos={SH:[0,2],TG:[0,4],BS:[1,1],AG:[1,2],ZH:[1,3],SG:[1,4],AR:[1,5],
            JU:[2,0],BL:[2,1],SO:[2,2],ZG:[2,3],SZ:[2,4],AI:[2,5],
            NE:[3,0],BE:[3,1],LU:[3,2],NW:[3,3],UR:[3,4],GL:[3,5],GR:[3,6],
            GE:[4,0],VD:[4,1],FR:[4,2],OW:[4,3],VS:[5,1],TI:[5,4]};
   var names={SH:'Schaffhausen',TG:'Thurgau',BS:'Basel-Stadt',AG:'Aargau',ZH:'Zürich',SG:'St. Gallen',AR:'Appenzell Ausserrhoden',JU:'Jura',BL:'Basel-Landschaft',SO:'Solothurn',ZG:'Zug',SZ:'Schwyz',AI:'Appenzell Innerrhoden',NE:'Neuenburg',BE:'Bern',LU:'Luzern',NW:'Nidwalden',UR:'Uri',GL:'Glarus',GR:'Graubünden',GE:'Genf',VD:'Waadt',FR:'Freiburg',OW:'Obwalden',VS:'Wallis',TI:'Tessin'};
+  var cls={limit:'is-limit',register:'is-register',fee:'is-fee',talk:'is-talk',none:''};
+  var esc=function(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});};
+  var fmt=function(d){return d.split('-').reverse().join('.');};
+  var DATA=null;
 
-  /* MOCKUP-INHALTE: vor Livegang rechtlich prüfen und mit Quellen versehen */
-  var data={
-    LU:{type:'limit',label:'Beschränkung',items:['In der Stadt Luzern gilt seit 2025 eine Obergrenze von 90 Nächten pro Jahr für bestimmte Wohnungen.','Grundlage war eine Abstimmung, die mit 64 Prozent angenommen wurde.']},
-    GE:{type:'limit',label:'Beschränkung',items:['Im Kanton Genf gilt eine Obergrenze von 90 Nächten pro Jahr.','Zunächst waren 60 Nächte vorgesehen, nach einem Rechtsstreit wurde die Grenze angehoben.','Die Durchsetzung läuft über Meldungen und ist umstritten.']},
-    BE:{type:'limit',label:'Beschränkung',items:['In der Berner Altstadt ist die Zahl der Kurzzeitvermietungen pro Gebäude begrenzt.']},
-    ZH:{type:'talk',label:'In Diskussion',items:['In der Stadt Zürich ist eine Volksinitiative für eine 90-Tage-Grenze geplant.','Für Kurzzeitvermietungen werden bereits touristische Abgaben erhoben.']},
-    BS:{type:'fee',label:'Abgaben',items:['In Basel werden touristische Abgaben auf Kurzzeitvermietungen erhoben.']},
-    VS:{type:'talk',label:'In Diskussion',items:['Das Wallis hat die meisten registrierten Kurzzeitvermietungen der Schweiz.','Der Hotelierverband fordert gleich lange Spiesse bei Brandschutz, Hygiene, Arbeitsrecht, Abgaben und Mehrwertsteuer.']}
-  };
-  /* Genf, Zürich, Basel: Abgaben zusätzlich nennen */
-  data.GE.items.push('Zusätzlich werden touristische Abgaben erhoben.');
-  data.BS.items.push('Weitere Regeln: Daten folgen.');
-
-  var tiles=document.getElementById('tiles'),panel=document.getElementById('panel');
-  var cls={limit:'is-limit',fee:'is-fee',talk:'is-talk'};
-
-  for(var r=0;r<6;r++){for(var c=0;c<7;c++){
-    var code=Object.keys(pos).filter(function(k){return pos[k][0]===r&&pos[k][1]===c;})[0];
-    var el;
-    if(!code){el=document.createElement('span');el.className='tile is-empty';el.setAttribute('aria-hidden','true');}
-    else{
-      el=document.createElement('button');el.type='button';el.className='tile '+(data[code]?cls[data[code].type]:'');
-      el.textContent=code;el.setAttribute('aria-pressed','false');el.setAttribute('aria-label',names[code]);el.dataset.code=code;
-      el.addEventListener('click',function(){select(this.dataset.code);});
-    }
-    tiles.appendChild(el);
-  }}
+  function li(items){
+    return '<ul>'+items.map(function(i){return '<li>'+esc(i.t)+(i.q?' <a class="src" href="'+esc(i.q)+'" target="_blank" rel="noopener">Quelle</a>':'')+'</li>';}).join('')+'</ul>';
+  }
 
   function select(code){
     tiles.querySelectorAll('.tile[data-code]').forEach(function(t){t.setAttribute('aria-pressed',t.dataset.code===code);});
-    var d=data[code];
-    var html='<h3>'+names[code]+'</h3>';
-    if(d){
-      html+='<span class="badge '+d.type+'">'+d.label+'</span><ul>'+d.items.map(function(i){return'<li>'+i+'</li>';}).join('')+'</ul>';
-    }else{
-      html+='<span class="badge none">Daten folgen</span><p>Für diesen Kanton tragen wir die Regeln gerade zusammen. Kennst du die Lage vor Ort? Melde dich bei uns.</p>';
+    var k=DATA.kantone[code]||{typ:'none',kantonal:[],gemeinden:[]};
+    var html='<h3>'+names[code]+'</h3><span class="badge '+k.typ+'">'+esc(DATA.typen[k.typ])+'</span>';
+    html+='<h4>Kanton</h4>';
+    html+=k.kantonal.length?li(k.kantonal):'<p>Keine kantonale Sonderregel bekannt. Es gelten die allgemeinen Pflichten (Steuern, Gästemeldung, Kurtaxe der Gemeinde). Kennst du eine lokale Regel? <a href="/#kontakt">Melde sie uns.</a></p>';
+    if(k.gemeinden.length){
+      html+='<h4>Gemeinden</h4>'+k.gemeinden.map(function(g){
+        return '<details class="gem"><summary><span class="dot '+g.typ+'"></span>'+esc(g.name)+'<small>'+esc(DATA.typen[g.typ])+'</small></summary>'+li(g.items)+'</details>';
+      }).join('');
     }
-    html+='<p class="note">Beispielinhalte im Mock-up. Stand und rechtliche Prüfung folgen. Keine Rechtsberatung.</p>';
+    html+='<p class="note">Stand '+fmt(DATA.stand)+'. '+esc(DATA.hinweis)+'</p>';
     panel.innerHTML=html;
   }
-  select('LU');
+
+  function build(){
+    tiles.innerHTML='';
+    for(var r=0;r<6;r++){for(var c=0;c<7;c++){
+      var code=Object.keys(pos).filter(function(k){return pos[k][0]===r&&pos[k][1]===c;})[0];
+      var el;
+      if(!code){el=document.createElement('span');el.className='tile is-empty';el.setAttribute('aria-hidden','true');}
+      else{
+        var k=DATA.kantone[code];
+        el=document.createElement('button');el.type='button';el.className='tile '+(k?cls[k.typ]:'');
+        if(k&&k.gemeinden.length)el.classList.add('has-gem');
+        el.textContent=code;el.setAttribute('aria-pressed','false');el.setAttribute('aria-label',names[code]+(k?', '+DATA.typen[k.typ]:''));el.dataset.code=code;
+        el.addEventListener('click',function(){select(this.dataset.code);});
+      }
+      tiles.appendChild(el);
+    }}
+    if(bund){
+      bund.innerHTML='<h3>'+esc(DATA.bund.titel)+'</h3>'+li(DATA.bund.items);
+    }
+    var stand=document.getElementById('standDatum');if(stand)stand.textContent='Stand '+fmt(DATA.stand);
+    select('LU');
+  }
+
+  fetch('/data/regeln.json').then(function(r){return r.json();}).then(function(d){DATA=d;build();})
+    .catch(function(){panel.innerHTML='<h3>Regelradar</h3><p>Die Daten konnten nicht geladen werden.</p>';});
 })();
 
 /* ---------- Newsletter ---------- */
