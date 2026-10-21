@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="de-CH"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mitglied werden | Swiss Short Term Rental Association</title>
+<meta name="description" content="Werde Mitglied im Schweizer Verband für Kurzzeitvermietung.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/site.css"><link rel="stylesheet" href="/css/portal.css"></head>
+<body>
+<header class="site"><div class="wrap bar"><a class="logo" href="/"><svg viewBox="0 0 40 46" aria-hidden="true"><path d="M20 2 3 8v16c0 10 7 17 17 20 10-3 17-10 17-20V8L20 2Z" fill="none" stroke="#fff" stroke-width="3"/><path d="M12 24l8-7 8 7v8H12v-8Z" fill="#fff"/><rect x="18" y="26" width="4" height="6" fill="#000"/></svg><span>Swiss Short<br>Term Rental</span></a><nav class="portal-nav"><a href="/">Zur Website</a><a href="/login.html">Login</a></nav></div></header>
+<main class="portal on-light"><div class="wrap" style="max-width:820px">
+  <h1 class="display h-l">Mitglied werden</h1>
+  <p class="lead" style="margin-bottom:36px">Fülle das Formular aus. Der Vorstand prüft deinen Antrag und meldet sich bei dir. Erst danach wird der Beitrag fällig.</p>
+  <div class="alert err" id="cancelled" hidden>Die Zahlung wurde abgebrochen. Du kannst sie über den Link in deiner E-Mail jederzeit wiederholen.</div>
+  <div id="done" class="card" hidden><h2 class="h-m">Danke für deinen Antrag!</h2><p id="doneText"></p><p style="margin-top:16px"><a class="btn btn-black" href="/">Zur Startseite</a></p></div>
+  <form id="applyForm" class="form-card" novalidate>
+    <fieldset class="field"><legend>Mitgliedschaft</legend><div class="choice" id="plans"></div></fieldset>
+    <div class="two">
+      <div class="field"><label for="firstName">Vorname *</label><input id="firstName" name="firstName" type="text" autocomplete="given-name" required></div>
+      <div class="field"><label for="lastName">Nachname *</label><input id="lastName" name="lastName" type="text" autocomplete="family-name" required></div>
+    </div>
+    <div class="field"><label for="email">E-Mail *</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+    <div class="two">
+      <div class="field"><label for="phone">Telefon</label><input id="phone" name="phone" type="tel" autocomplete="tel"></div>
+      <div class="field"><label for="company">Firma oder Objektname</label><input id="company" name="company" type="text" autocomplete="organization"></div>
+    </div>
+    <div class="two">
+      <div class="field"><label for="canton">Kanton</label>
+        <select id="canton" name="canton"><option value="">Bitte wählen</option>
+          <option value="ag">Aargau</option><option value="ai">Appenzell Innerrhoden</option><option value="ar">Appenzell Ausserrhoden</option><option value="be">Bern</option><option value="bl">Basel-Landschaft</option><option value="bs">Basel-Stadt</option><option value="fr">Freiburg</option><option value="ge">Genf</option><option value="gl">Glarus</option><option value="gr">Graubünden</option><option value="ju">Jura</option><option value="lu">Luzern</option><option value="ne">Neuenburg</option><option value="nw">Nidwalden</option><option value="ow">Obwalden</option><option value="sg">St. Gallen</option><option value="sh">Schaffhausen</option><option value="so">Solothurn</option><option value="sz">Schwyz</option><option value="tg">Thurgau</option><option value="ti">Tessin</option><option value="ur">Uri</option><option value="vd">Waadt</option><option value="vs">Wallis</option><option value="zg">Zug</option><option value="zh">Zürich</option>
+        </select></div>
+      <div class="field"><label for="objects">Anzahl Objekte</label><input id="objects" name="objects" type="text" inputmode="numeric"></div>
+    </div>
+    <div class="field"><label for="message">Nachricht (optional)</label><textarea id="message" name="message"></textarea></div>
+    <fieldset class="field"><legend>Wie möchtest du den Beitrag bezahlen?</legend>
+      <div class="choice">
+        <label><input type="radio" name="payment" value="online" checked><span>Online mit Karte oder TWINT<small>Nach der Freigabe erhältst du einen Zahlungslink.</small></span></label>
+        <label><input type="radio" name="payment" value="rechnung"><span>Auf Rechnung<small>Du erhältst eine Rechnung von der Geschäftsstelle.</small></span></label>
+      </div></fieldset>
+    <div class="field"><label class="check-line"><input type="checkbox" id="consent" required><span>Ich akzeptiere die <a href="/datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a> und die Statuten des Verbands. *</span></label></div>
+    <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <div class="alert err" id="error" role="alert" hidden></div>
+    <button class="btn btn-red" type="submit" id="submitBtn">Antrag senden</button>
+  </form>
+</div></main>
+<script src="/js/apply.js" defer></script>
+</body></html>
