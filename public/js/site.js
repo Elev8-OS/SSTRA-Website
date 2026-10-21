@@ -87,3 +87,13 @@
     btn.disabled=false;
   });
 })();
+
+/* ---------- Stammtische auf der Startseite ---------- */
+(function(){
+  var box=document.getElementById('eventsHome');if(!box)return;
+  var esc=function(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});};
+  fetch('/api/events').then(function(r){return r.json();}).then(function(d){
+    if(!d.events.length){box.innerHTML='<p>Die ersten Termine werden gerade geplant.</p>';return;}
+    box.innerHTML=d.events.map(function(e){return '<a class="event-tile" href="/regionen/'+esc(e.slug)+'"><time>'+esc(e.datum.split('-').reverse().join('.'))+'</time><strong>'+esc(e.titel)+'</strong><span>'+esc(e.region)+' · '+esc(e.ort)+'</span></a>';}).join('');
+  }).catch(function(){box.innerHTML='<p>Termine findest du auf den <a href="/regionen">Regionalseiten</a>.</p>';});
+})();
