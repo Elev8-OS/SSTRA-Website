@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Swiss Short Term Rental Association | Schweizer Verband für Kurzzeitvermietung</title>
+<meta name="description" content="Der Schweizer Verband für Kurzzeitvermietung: Wir vernetzen Gastgeber, setzen Standards und reden mit, wenn über die Regeln entschieden wird.">
+<meta name="color-scheme" content="light">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+<a class="skip" href="#inhalt">Zum Inhalt springen</a>
+
+<!-- ============ HEADER ============ -->
+<header class="site" id="top">
+  <div class="wrap bar">
+    <a class="logo" href="#top" aria-label="Swiss Short Term Rental Association, Startseite">
+      <svg viewBox="0 0 40 46" aria-hidden="true"><path d="M20 2 3 8v16c0 10 7 17 17 20 10-3 17-10 17-20V8L20 2Z" fill="none" stroke="#fff" stroke-width="3"/><path d="M12 24l8-7 8 7v8H12v-8Z" fill="#fff"/><rect x="18" y="26" width="4" height="6" fill="#000"/></svg>
+      <span>Swiss Short<br>Term Rental</span>
+    </a>
+    <nav class="main" aria-label="Hauptnavigation">
+      <ul>
+        <li><a href="#verband">Verband</a></li>
+        <li><a href="#regeln">Regeln</a></li>
+        <li><a href="#standards">Standards</a></li>
+        <li><a href="#mitglied">Mitgliedschaft</a></li>
+        <li><a href="#studie">Studie</a></li>
+        <li><a href="#aktuell">Aktuell</a></li>
+        <li class="menu-extra">
+          <a class="btn btn-red" href="/mitglied-werden.html">Mitglied werden</a>
+          <span class="lang" aria-label="Sprache"><a href="#" aria-current="true">DE</a><a href="#" title="folgt">FR</a><a href="#" title="folgt">IT</a><a href="#" title="folgt">EN</a></span>
+        </li>
+      </ul>
+    </nav>
+    <div class="lang" aria-label="Sprache"><a href="#" aria-current="true" lang="de">DE</a><a href="#" lang="fr" title="folgt">FR</a><a href="#" lang="it" title="folgt">IT</a><a href="#" lang="en" title="folgt">EN</a></div>
+    <a class="login-link" href="/login.html">Login</a>
+    <a class="btn btn-white" href="/mitglied-werden.html">Mitglied werden</a>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="nav">Menü</button>
+  </div>
+</header>
+
+<main id="inhalt">
+
+<!-- ============ HERO ============ -->
+<section class="hero" style="padding:0">
+  <div class="wrap">
+    <h1 class="display h-xl">Die Stimme der Schweizer Gastgeber.</h1>
+    <p class="lead">Wir vernetzen Gastgeber, setzen Standards und reden mit, wenn über die Regeln der Kurzzeitvermietung entschieden wird.</p>
+    <div class="cta-row">
+      <a class="btn btn-red" href="/mitglied-werden.html">Mitglied werden</a>
+      <a class="btn btn-line" href="#regeln">Regeln in deiner Gemeinde</a>
+    </div>
+    <div class="hero-foot" aria-label="Eckdaten">
+      <span>Entstanden am<br>Host Summit Olten</span>
+      <span>26 Kantone.<br>Ein Branchenverband.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MISSION ============ -->
+<section class="mission" id="verband">
+  <div class="wrap">
+    <h2 class="display h-l">Drei Aufgaben.<br>Eine gemeinsame Stimme.</h2>
+    <div class="pillars">
+      <div class="pillar">
+        <h3>Vernetzen</h3>
+        <p>Gastgeberinnen, Gastgeber und Property Manager aus allen Regionen tauschen sich aus, an Anlässen, in Regionalgruppen und online.</p>
+      </div>
+      <div class="pillar">
+        <h3>Professionalisieren</h3>
+        <p>Ein gemeinsamer Verhaltenskodex, praxisnahes Wissen zu Steuern, Kurtaxe und Recht und später ein Gütesiegel für Gastgeber.</p>
+      </div>
+      <div class="pillar">
+        <h3>Mitreden</h3>
+        <p>Wir sprechen mit Gemeinden, Kantonen und Bund, mit Zahlen statt Behauptungen und mit Lösungsvorschlägen statt nur Kritik.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REGELN ============ -->
+<section id="regeln" class="on-light">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="display h-l">Was gilt bei dir?</h2>
+      <p class="lead">Die Schweiz kennt kein einheitliches Gesetz. Regeln machen Bund, Kantone und Gemeinden. Wähle einen Kanton und sieh, was dich betrifft.</p>
+    </div>
+    <div class="rules-grid">
+      <div>
+        <div class="tiles" id="tiles" role="group" aria-label="Kantone"></div>
+        <div class="legend" aria-hidden="true">
+          <span><i style="background:var(--red)"></i>Beschränkung</span>
+          <span><i style="background:#000"></i>Abgaben</span>
+          <span><i style="background:#fff;border-color:#000"></i>In Diskussion</span>
+          <span><i style="background:var(--grey)"></i>Daten folgen</span>
+        </div>
+      </div>
+      <div class="rule-panel" id="panel" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STANDARDS ============ -->
+<section class="standards on-light" id="standards">
+  <div class="wrap std-grid">
+    <div>
+      <h2 class="display h-l">Standards, auf die sich Gäste und Gemeinden verlassen können.</h2>
+      <p class="lead" style="margin-top:28px">Wer Mitglied ist, verpflichtet sich auf unseren Verhaltenskodex. Er zeigt: Professionelle Kurzzeitvermietung nimmt Verantwortung wahr.</p>
+      <div class="seal">
+        <svg viewBox="0 0 40 46" aria-hidden="true"><path d="M20 2 3 8v16c0 10 7 17 17 20 10-3 17-10 17-20V8L20 2Z" fill="none" stroke="#fff" stroke-width="2.5"/><path d="M13 23l5 5 10-11" fill="none" stroke="#C0100D" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div>
+          <h3>Swiss Verified Host</h3>
+          <p>Das Gütesiegel für Gastgeber, die den Kodex erfüllen und das von unabhängiger Stelle geprüft bekommen. In Planung.</p>
+        </div>
+      </div>
+    </div>
+    <ul class="checks">
+      <li><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="13" fill="none" stroke="#000" stroke-width="2"/><path d="M8 14.5l4 4 8-9" fill="none" stroke="#C0100D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong>Sicherheit zuerst</strong><span>Brandschutz, Notfallinformationen und Haftpflicht sind geregelt.</span></div></li>
+      <li><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="13" fill="none" stroke="#000" stroke-width="2"/><path d="M8 14.5l4 4 8-9" fill="none" stroke="#C0100D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong>Steuern und Abgaben stimmen</strong><span>Kurtaxe, Einkommens- und Mehrwertsteuer werden korrekt abgerechnet.</span></div></li>
+      <li><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="13" fill="none" stroke="#000" stroke-width="2"/><path d="M8 14.5l4 4 8-9" fill="none" stroke="#C0100D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong>Gute Nachbarschaft</strong><span>Hausregeln, Lärmschutz und eine Ansprechperson vor Ort.</span></div></li>
+      <li><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="13" fill="none" stroke="#000" stroke-width="2"/><path d="M8 14.5l4 4 8-9" fill="none" stroke="#C0100D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong>Transparente Gästekommunikation</strong><span>Klare Preise, faire Stornobedingungen und erreichbare Kontaktdaten.</span></div></li>
+      <li><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="13" fill="none" stroke="#000" stroke-width="2"/><path d="M8 14.5l4 4 8-9" fill="none" stroke="#C0100D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong>Datenschutz</strong><span>Gästedaten werden nach dem Schweizer Datenschutzgesetz behandelt.</span></div></li>
+      <li><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="13" fill="none" stroke="#000" stroke-width="2"/><path d="M8 14.5l4 4 8-9" fill="none" stroke="#C0100D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong>Dialog statt Konfrontation</strong><span>Wir suchen das Gespräch mit Gemeinden, Hotellerie und Wohnschutz-Organisationen.</span></div></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ MITGLIEDSCHAFT ============ -->
+<section id="mitglied" class="on-light">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="display h-l">Mitglied werden</h2>
+      <p class="lead">Je mehr Gastgeber wir sind, desto mehr Gewicht hat unsere Stimme. Wähle die Mitgliedschaft, die zu dir passt.</p>
+    </div>
+    <div class="plans">
+      <article class="plan">
+        <h3>Gastgeber</h3>
+        <p class="who">Für Eigentümerinnen und Eigentümer, die selbst vermieten.</p>
+        <ul><li>Stimmrecht an der Mitgliederversammlung</li><li>Wissens-Hub und Checklisten</li><li>Zugang zur Community</li></ul>
+        <p class="price">CHF –<small> / Jahr</small></p>
+        <a class="btn btn-black" href="/mitglied-werden.html?plan=gastgeber">Jetzt anmelden</a>
+      </article>
+      <article class="plan feature">
+        <span class="tag">Für Profis</span>
+        <h3>Property Manager</h3>
+        <p class="who">Für Unternehmen, die Objekte für andere betreiben.</p>
+        <ul><li>Stimmrecht an der Mitgliederversammlung</li><li>Kodex und Gütesiegel</li><li>Austausch unter Betreibern</li></ul>
+        <p class="price">CHF –<small> / Jahr, nach Anzahl Objekte</small></p>
+        <a class="btn btn-white" href="/mitglied-werden.html?plan=property-manager">Jetzt anmelden</a>
+      </article>
+      <article class="plan">
+        <h3>Regionalgruppe</h3>
+        <p class="who">Für Gastgeber-Zusammenschlüsse in Kanton oder Gemeinde.</p>
+        <ul><li>Lokale Vertretung gegenüber Gemeinden</li><li>Toolkit für Gespräche mit Behörden</li><li>Eigene Seite im Verband</li></ul>
+        <p class="price">CHF –<small> / Jahr</small></p>
+        <a class="btn btn-black" href="/mitglied-werden.html?plan=regionalgruppe">Anfrage senden</a>
+      </article>
+      <article class="plan">
+        <h3>Fördermitglied</h3>
+        <p class="who">Für Technologie-, Service- und Plattformpartner.</p>
+        <ul><li>Sichtbarkeit bei Anlässen und online</li><li>Austausch mit dem Vorstand</li><li>Kein Stimmrecht</li></ul>
+        <p class="price">CHF –<small> / Jahr</small></p>
+        <a class="btn btn-black" href="/mitglied-werden.html?plan=foerdermitglied">Anfrage senden</a>
+      </article>
+    </div>
+    <p class="vote-note">Stimmrecht haben ausschliesslich Gastgeber und Property Manager. So bleibt der Verband unabhängig, auch von seinen Partnern.</p>
+  </div>
+</section>
+
+<!-- ============ STUDIE ============ -->
+<section class="study" id="studie">
+  <div class="wrap study-grid">
+    <div>
+      <h2 class="display h-l">Zum ersten Mal echte Schweizer Zahlen.</h2>
+      <p class="lead">Gemeinsam mit der HES-SO entsteht die erste nationale Marktstudie zur Kurzzeitvermietung. Sie liefert Daten, mit denen Gemeinden, Medien und Politik arbeiten können.</p>
+      <div class="cta-row"><a class="btn btn-red" href="#kontakt">Studie anfordern</a></div>
+    </div>
+    <aside class="study-card" aria-label="Eckdaten Studie">
+      <dl>
+        <div><dt>Titel</dt><dd>Erste Schweizer STR-Marktstudie 2026</dd></div>
+        <div><dt>Wissenschaftlicher Partner</dt><dd>HES-SO, Prof. Dr. Marc K. Peter</dd></div>
+        <div><dt>Vorgestellt am</dt><dd>Host Summit, FHNW Olten</dd></div>
+      </dl>
+    </aside>
+  </div>
+</section>
+
+<!-- ============ STIMMEN ============ -->
+<section class="on-light">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="display h-l">Wer vermietet, und warum?</h2>
+      <p class="lead">Hinter jeder Wohnung steht ein Mensch. Hier erzählen Gastgeber aus der ganzen Schweiz, was Kurzzeitvermietung für sie und ihre Region bedeutet.</p>
+    </div>
+    <div class="voices">
+      <figure class="voice">
+        <div class="avatar" aria-hidden="true">AB</div>
+        <blockquote>Platzhalter: Zitat einer Gastgeberin aus dem Berner Oberland über Gäste, Handwerker und Dorfläden.</blockquote>
+        <cite>Name, Ort, Anzahl Objekte</cite>
+      </figure>
+      <figure class="voice">
+        <div class="avatar" aria-hidden="true">CD</div>
+        <blockquote>Platzhalter: Zitat eines Property Managers aus der Stadt über Arbeitsplätze und Qualität.</blockquote>
+        <cite>Name, Ort, Unternehmen</cite>
+      </figure>
+      <figure class="voice">
+        <div class="avatar" aria-hidden="true">EF</div>
+        <blockquote>Platzhalter: Zitat eines Gastgebers aus der Romandie oder dem Tessin.</blockquote>
+        <cite>Name, Ort, Anzahl Objekte</cite>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AKTUELL ============ -->
+<section id="aktuell" class="on-light" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="display h-l">Aktuell</h2>
+    </div>
+    <ul class="news-list">
+      <li><time datetime="2026-10-01">Datum folgt</time><a href="#">Platzhalter: Positionspapier zur Regulierung der Kurzzeitvermietung</a><span class="kind">Position</span></li>
+      <li><time datetime="2026-10-01">Datum folgt</time><a href="#">Platzhalter: Verband gegründet, das sind die nächsten Schritte</a><span class="kind">Verband</span></li>
+      <li><time datetime="2026-10-01">Datum folgt</time><a href="#">Platzhalter: Gastgeber-Stammtisch in deiner Region</a><span class="kind">Anlass</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ PARTNER ============ -->
+<section class="partners on-light">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="display h-l">Partner</h2>
+      <p class="lead">Diese Unternehmen unterstützen den Verband und den Host Summit. Sie haben kein Stimmrecht.</p>
+    </div>
+    <div class="partner-wall">
+      <span>Shelly</span><span>Myotaku</span><span>Elev8</span><span>Yale</span><span>Guesty</span><span>HES-SO Valais-Wallis</span><span>Visionary Hospitality</span><span>FEWOlution</span><span>immohost</span><span>Ivy Stenzel</span><span>CheckYout</span><span>Hotel Inside</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABSCHLUSS ============ -->
+<section class="final" id="kontakt">
+  <div class="wrap final-grid">
+    <div>
+      <h2 class="display h-l">Sei dabei, wenn die Regeln entstehen.</h2>
+      <div class="cta-row"><a class="btn btn-white" href="/mitglied-werden.html">Mitglied werden</a><a class="btn btn-line" href="mailto:info@hostsummit.ch">Kontakt aufnehmen</a></div>
+    </div>
+    <form class="news-form" id="newsForm" novalidate>
+      <!-- sendet an /api/newsletter, dort Anbindung an GHL -->
+      <label for="email">Newsletter: News und Termine für Gastgeber</label>
+      <div class="row">
+        <input id="email" name="email" type="email" placeholder="deine@email.ch" autocomplete="email" required>
+        <button class="btn btn-black" type="submit">Anmelden</button>
+      </div>
+      <label class="check"><input type="checkbox" required> Ich möchte den Newsletter erhalten und akzeptiere die Datenschutzerklärung.</label>
+      <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+      <p class="form-msg" role="status"></p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="logo" href="#top"><svg viewBox="0 0 40 46" aria-hidden="true"><path d="M20 2 3 8v16c0 10 7 17 17 20 10-3 17-10 17-20V8L20 2Z" fill="none" stroke="#fff" stroke-width="3"/><path d="M12 24l8-7 8 7v8H12v-8Z" fill="#fff"/><rect x="18" y="26" width="4" height="6" fill="#000"/></svg><span>Swiss Short<br>Term Rental</span></a>
+        <p style="margin-top:18px;color:#a8a8a8;font-size:1rem">Schweizer Verband für Kurzzeitvermietung</p>
+      </div>
+      <div><h4>Verband</h4><ul><li><a href="#verband">Aufgaben</a></li><li><a href="#standards">Standards</a></li><li><a href="#mitglied">Mitgliedschaft</a></li></ul></div>
+      <div><h4>Wissen</h4><ul><li><a href="#regeln">Regeln in deiner Gemeinde</a></li><li><a href="#studie">Marktstudie</a></li><li><a href="#aktuell">Aktuell</a></li></ul></div>
+      <div><h4>Kontakt</h4><ul><li><a href="mailto:info@hostsummit.ch">info@hostsummit.ch</a></li><li><a href="/login.html">Mitglieder-Login</a></li><li><a href="/impressum.html">Impressum</a></li><li><a href="/datenschutz.html">Datenschutz</a></li></ul></div>
+    </div>
+    <div class="foot-base"><span>© 2026 Schweizer Verband für Kurzzeitvermietung</span><span>Medienpartner: Hotelinside</span></div>
+  </div>
+</footer>
+
+<script src="/js/site.js" defer></script>
+</body>
+</html>
