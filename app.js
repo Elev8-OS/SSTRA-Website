@@ -10,6 +10,7 @@ import { TAG, roleTag, planTag, userFromContact, isBoard, tagValue } from './lib
 import { loadUser, requireRole, sameOrigin, startSession, endSession, consumeMagic, readPayToken } from './lib/auth.js';
 import { activateMember, approveApplication, rejectApplication, setRole, payLink, loginLink } from './lib/membership.js';
 import { esc, page, mailHtml, ROLE_LABEL } from './lib/views.js';
+import { mountRegions } from './lib/regions.js';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const clean = (v, max = 200) => String(v ?? '').trim().slice(0, max);
@@ -269,6 +270,9 @@ export function createApp({ ghl, payments }) {
     users.invalidate(c.email);
     return {};
   }));
+
+  // ---- Regionen und Stammtische ----
+  mountRegions(app, { ghl, users });
 
   // ---- Statische Website ----
   app.use(express.static(path.join(here, 'public'), { extensions: ['html'], maxAge: isProd ? '1h' : 0 }));
