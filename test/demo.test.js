@@ -55,3 +55,17 @@ test('Unbekannte Demo-Rolle wird abgelehnt', async () => {
   const r = await fetch(base + '/demo/login', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: 'key=hacker' });
   assert.equal(r.status, 400);
 });
+
+test('Regionen: Übersicht, Detailseite, Anmeldung zum Stammtisch', async () => {
+  assert.equal((await get('/regionen')).status, 200);
+  const r = await get('/regionen/zuerich');
+  assert.equal(r.status, 200);
+  const html = await r.text();
+  assert.ok(html.includes('Stammtisch Zürich') && html.includes('Regelradar'));
+  assert.equal((await get('/regionen/nirgendwo')).status, 404);
+  const ev = await (await get('/api/events')).json();
+  assert.ok(ev.events.length >= 1 && ev.events[0].slug);
+  const post = (b) => fetch(base + '/api/events/register', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(b) });
+  assert.equal((await post({ event: 'zh-2026-11-19', region: 'zuerich', name: 'Reto Test', email: 'reto@test.ch', consent: true, elapsed: 5000 })).status, 200);
+  assert.equal((await post({ event: 'gibtsnicht', region: 'zuerich', name: 'X Y', email: 'x@y.ch', consent: true, elapsed: 5000 })).status, 400);
+});
