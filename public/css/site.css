@@ -306,3 +306,34 @@ footer a:hover{text-decoration:underline;text-underline-offset:4px}
   .cta-row .btn{width:100%}
   .plan{padding:26px 22px}
 }
+
+/* ============ Echte Karte ============ */
+.map-wrap{position:relative;background:var(--grey);border-radius:var(--radius-panel);padding:14px;overflow:hidden}
+.map-bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px;min-height:40px}
+.map-title{font-weight:600;font-size:.95rem;color:var(--grey-text)}
+.map-select{margin-left:auto}
+.map-select select{font:inherit;font-size:.9rem;padding:8px 12px;border-radius:12px;border:2px solid transparent;background:#fff}
+.sr-only{position:absolute;left:-9999px}
+#chMap{width:100%;height:auto;display:block}
+.canton{fill:#d9d9d9;stroke:#fff;stroke-width:1.4;cursor:pointer;transition:fill .2s,opacity .25s}
+.canton.t-limit{fill:var(--red)}.canton.t-register{fill:#111}.canton.t-fee{fill:#6b6b6b}.canton.t-talk{fill:#fff;stroke:#000;stroke-width:1.2}
+.canton:hover{filter:brightness(.92)}
+.canton.has-gem{stroke-dasharray:none}
+svg.zoomed .canton{opacity:.18;pointer-events:none}
+svg.zoomed .canton.active{opacity:0;}
+.muni{fill:#f3f3f3;stroke:#bdbdbd;stroke-width:.35;display:none;cursor:pointer;transition:fill .15s}
+.muni.show{display:block}
+.muni.show:hover{fill:#dcdcdc}
+.muni.has-rule.t-limit{fill:var(--red)}.muni.has-rule.t-register{fill:#111}.muni.has-rule.t-fee{fill:#6b6b6b}.muni.has-rule.t-talk{fill:#fff;stroke:#000;stroke-width:.9}
+.muni.active{stroke:#000;stroke-width:1.6}
+.lake{fill:#cfe3ef;pointer-events:none}
+.lbl{font-family:var(--font);font-size:11px;font-weight:600;fill:#fff;text-anchor:middle;pointer-events:none;paint-order:stroke;stroke:rgba(0,0,0,.25);stroke-width:2px}
+svg.zoomed .lbl{display:none}
+.canton.t-talk+.lbl{fill:#000}
+.map-tip{position:absolute;background:#000;color:#fff;font-size:.85rem;font-weight:500;padding:6px 10px;border-radius:8px;pointer-events:none;white-space:nowrap;z-index:5}
+.geo-credit{font-size:.8rem;color:var(--grey-text);margin-top:12px}
+.rule-panel .sub{color:var(--grey-text);margin:-2px 0 14px;font-size:.95rem}
+.rule-panel .muted{color:var(--grey-text);font-size:.95rem}
+.rule-panel .share{margin-top:18px;font-size:.9rem}
+.rule-panel .share a{color:var(--grey-text)}
+@media (max-width:480px){.map-wrap{padding:10px}.map-select{margin-left:0;width:100%}.map-select select{width:100%}}
