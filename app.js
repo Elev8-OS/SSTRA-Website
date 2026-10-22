@@ -173,7 +173,7 @@ export function createApp({ ghl, payments, geoFetch }) {
       if (contact && user.role) {
         await ghl.sendEmail(contact.id, 'Dein Login-Link', mailHtml({
           heading: 'Dein Login-Link',
-          paragraphs: ['Mit diesem Link meldest du dich im Mitgliederbereich an. Er ist 15 Minuten gültig und nur einmal verwendbar. Hast du ihn nicht angefordert, kannst du diese Mail ignorieren.'],
+          paragraphs: ['Mit diesem Link meldest du dich im Mitgliederbereich an. Er ist 15 Minuten gültig. Hast du ihn nicht angefordert, kannst du diese Mail ignorieren.'],
           button: { label: 'Jetzt anmelden', url: loginLink(email) }
         }));
       }
@@ -181,15 +181,12 @@ export function createApp({ ghl, payments, geoFetch }) {
     } catch (e) { console.error(e); res.status(502).json({ error: 'Login momentan nicht möglich.' }); }
   });
 
-  // Zwischenseite: Mail-Scanner lösen den Link sonst automatisch ein
-  app.get('/auth/verify', (req, res) => {
-    const token = esc(String(req.query.token || ''));
-    res.send(page({ title: 'Anmelden', body: `<div class="card narrow"><h1 class="display h-m">Anmelden</h1><p>Bestätige die Anmeldung im Mitgliederbereich.</p>
-      <form method="post" action="${config.baseUrl}/auth/verify"><input type="hidden" name="token" value="${token}"><button class="btn btn-red" type="submit">Jetzt anmelden</button></form></div>` }));
-  });
-  app.post('/auth/verify', async (req, res) => {
+  // Klick auf den Link in der Mail loggt direkt ein (Scanner-Schutz: siehe consumeMagic)
+  const verifyLogin = async (req, res) => {
+    res.set('Cache-Control', 'no-store');
     try {
-      const email = consumeMagic(String(req.body.token || ''));
+      const token = String((req.method === 'POST' ? req.body?.token : req.query.token) || '');
+      const email = consumeMagic(token);
       users.invalidate(email);
       const user = userFromContact(email, await ghl.getContactByEmail(email));
       if (!user.role) throw new Error('kein Zugang');
@@ -198,7 +195,9 @@ export function createApp({ ghl, payments, geoFetch }) {
     } catch {
       res.status(400).send(page({ title: 'Link ungültig', body: '<div class="card narrow"><h1 class="display h-m">Link ungültig</h1><p>Der Link ist abgelaufen oder wurde schon verwendet.</p><p><a class="btn btn-red" href="/login.html">Neuen Link anfordern</a></p></div>' }));
     }
-  });
+  };
+  app.get('/auth/verify', verifyLogin);
+  app.post('/auth/verify', verifyLogin); // Links aus Mails, die vor dieser Änderung verschickt wurden
   app.post('/auth/logout', (_req, res) => { endSession(res); res.redirect(303, '/'); });
 
   // ---- Mitgliederbereich ----
