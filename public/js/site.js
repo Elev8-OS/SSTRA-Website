@@ -109,6 +109,8 @@
     var st=document.getElementById('standDatum');if(st)st.textContent='Stand '+fmt(DATA.stand);
     var gc=document.getElementById('geoCredit');if(gc)gc.textContent=DATA.geodaten||'';
     fromHash(true);
+    window.regelradar={select:selectCanton,kantonOf:function(bfs){return (muniByBfs[bfs]||{}).k||null;}};
+    document.dispatchEvent(new CustomEvent('regelradar:ready'));
   }
   function fromHash(init){var m=location.hash.match(/^#regeln\/([A-Z]{2})(?:\/(\d+))?/);if(m&&names[m[1]]){selectCanton(m[1],m[2]?+m[2]:null,true);if(init&&!m[2])svg.setAttribute('viewBox',curView.join(' '));}else if(!init)selectCanton(null,null,true);else{renderPanel('LU');}}
   window.addEventListener('hashchange',function(){fromHash(false);});
@@ -149,4 +151,44 @@
     if(!d.events.length){box.innerHTML='<p>Die ersten Termine werden gerade geplant.</p>';return;}
     box.innerHTML=d.events.map(function(e){return '<a class="event-tile" href="/regionen/'+esc(e.slug)+'"><time>'+esc(e.datum.split('-').reverse().join('.'))+'</time><strong>'+esc(e.titel)+'</strong><span>'+esc(e.region)+' · '+esc(e.ort)+'</span></a>';}).join('');
   }).catch(function(){box.innerHTML='<p>Termine findest du auf den <a href="/regionen">Regionalseiten</a>.</p>';});
+})();
+
+/* ---------- Adress-Check (geo.admin.ch über eigenen Proxy) ---------- */
+(function(){
+  var f=document.getElementById('addrForm');if(!f)return;
+  var inp=document.getElementById('addrInput'),list=document.getElementById('addrList'),msg=document.getElementById('addrMsg');
+  var esc=function(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});};
+  var timer,results=[],active=-1;
+  function close(){list.hidden=true;inp.setAttribute('aria-expanded','false');active=-1;}
+  function render(){
+    if(!results.length){close();return;}
+    list.innerHTML=results.map(function(r,i){return '<li role="option" data-i="'+i+'"'+(i===active?' aria-selected="true"':'')+'>'+esc(r.label)+'<small>'+(r.origin==='gg25'?'Gemeinde':r.origin==='zipcode'?'Ort':'Adresse')+'</small></li>';}).join('');
+    list.hidden=false;inp.setAttribute('aria-expanded','true');
+  }
+  function search(q){
+    fetch('/api/adresse?q='+encodeURIComponent(q)).then(function(r){return r.json();}).then(function(d){results=d.results||[];active=-1;render();}).catch(function(){results=[];close();});
+  }
+  inp.addEventListener('input',function(){clearTimeout(timer);msg.textContent='';var q=inp.value.trim();if(q.length<3){results=[];close();return;}timer=setTimeout(function(){search(q);},220);});
+  inp.addEventListener('keydown',function(e){
+    if(list.hidden)return;
+    if(e.key==='ArrowDown'){e.preventDefault();active=Math.min(results.length-1,active+1);render();}
+    else if(e.key==='ArrowUp'){e.preventDefault();active=Math.max(0,active-1);render();}
+    else if(e.key==='Escape'){close();}
+    else if(e.key==='Enter'&&active>=0){e.preventDefault();pick(results[active]);}
+  });
+  list.addEventListener('mousedown',function(e){var li=e.target.closest('li');if(li){e.preventDefault();pick(results[+li.dataset.i]);}});
+  document.addEventListener('click',function(e){if(!f.contains(e.target))close();});
+  f.addEventListener('submit',function(e){e.preventDefault();if(results.length)pick(results[Math.max(0,active)]);else if(inp.value.trim().length>=3){msg.textContent='Suche …';fetch('/api/adresse?q='+encodeURIComponent(inp.value.trim())).then(function(r){return r.json();}).then(function(d){if(d.results&&d.results.length)pick(d.results[0]);else msg.textContent='Nichts gefunden. Versuch es mit Strasse und Ort.';});}});
+  function show(bfs,name){
+    var go=function(){var k=window.regelradar.kantonOf(bfs);if(!k){msg.textContent='Gemeinde '+name+' nicht in der Karte gefunden (Gemeindefusion?). Bitte Kanton manuell wählen.';return;}
+      window.regelradar.select(k,bfs);msg.textContent='Gemeinde: '+name+' ('+k+'). Die Regeln stehen rechts.';
+      var panel=document.getElementById('panel');if(panel&&window.innerWidth<900)panel.scrollIntoView({behavior:'smooth',block:'start'});};
+    if(window.regelradar)go();else document.addEventListener('regelradar:ready',go,{once:true});
+  }
+  function pick(r){
+    close();inp.value=r.label;
+    if(r.bfs){show(r.bfs,r.label.replace(/\s*\([A-Z]{2}\)$/,''));return;}
+    msg.textContent='Gemeinde wird ermittelt …';
+    fetch('/api/adresse/gemeinde?lon='+r.lon+'&lat='+r.lat).then(function(x){return x.json();}).then(function(m){if(m.bfs)show(m.bfs,m.name);else msg.textContent=m.error||'Keine Gemeinde gefunden.';}).catch(function(){msg.textContent='Gemeinde konnte nicht ermittelt werden.';});
+  }
 })();
