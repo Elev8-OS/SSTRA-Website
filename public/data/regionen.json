@@ -1,25 +1,161 @@
 {
-  "hinweis": "Termine und Ansprechpersonen sind Platzhalter bis zur Gründung der Regionalgruppen. Anmeldungen laufen über den Verband (GHL).",
+  "hinweis": "Die Regionalgruppen sind im Aufbau. Termine mit dem Vermerk «geplant» sind noch nicht bestätigt: Wer sich meldet, wird informiert, sobald Ort und Zeit feststehen.",
   "regionen": [
-    { "slug": "zuerich", "name": "Zürich", "kantone": ["ZH"], "lead": "Ansprechperson folgt", "intro": "Stadt Zürich, Winterthur und Umland. Thema Nummer eins: die neuen Regeln für Business-Apartments seit September 2026 und die anstehende 90-Tage-Initiative.",
+    {
+      "slug": "zuerich",
+      "name": "Zürich",
+      "kantone": [
+        "ZH"
+      ],
+      "lead": "Ansprechperson folgt",
+      "intro": "Stadt Zürich, Winterthur und Umland. Thema Nummer eins: die neuen Regeln für Business-Apartments seit September 2026 und die anstehende 90-Tage-Initiative.",
       "events": [
-        { "id": "zh-2026-11-19", "datum": "2026-11-19", "zeit": "18:30", "ort": "Zürich, Lokal folgt", "titel": "Stammtisch Zürich: Was die neuen BZO-Regeln für Gastgeber bedeuten", "text": "Austausch mit Gastgebern und einem Gast aus der Verwaltung. Platzhalter-Termin." }
-      ] },
-    { "slug": "zentralschweiz", "name": "Zentralschweiz", "kantone": ["LU", "ZG", "SZ", "NW", "OW", "UR"], "lead": "Ansprechperson folgt", "intro": "Luzern als Pionierstadt der 90-Nächte-Regel, dazu Zug, Schwyz und die Innerschweizer Tourismusorte.",
+        {
+          "id": "zh-2026-11-19",
+          "datum": "2026-11-19",
+          "zeit": "18:30",
+          "ort": "Zürich, Ort folgt",
+          "titel": "Stammtisch Zürich: Neue Regeln für Business-Apartments",
+          "text": "Austausch unter Gastgebern zu den neuen Regeln in der Stadt Zürich und zur hängigen 90-Tage-Initiative.",
+          "status": "geplant"
+        }
+      ]
+    },
+    {
+      "slug": "zentralschweiz",
+      "name": "Zentralschweiz",
+      "kantone": [
+        "LU",
+        "ZG",
+        "SZ",
+        "NW",
+        "OW",
+        "UR"
+      ],
+      "lead": "Ansprechperson folgt",
+      "intro": "Luzern als Pionierstadt der 90-Nächte-Regel, dazu Zug, Schwyz und die Innerschweizer Tourismusorte.",
       "events": [
-        { "id": "lu-2026-12-03", "datum": "2026-12-03", "zeit": "18:30", "ort": "Luzern, Lokal folgt", "titel": "Stammtisch Luzern: Zwei Jahre Registrierungspflicht, erste Bilanz", "text": "Platzhalter-Termin." }
-      ] },
-    { "slug": "berner-oberland", "name": "Berner Oberland", "kantone": ["BE"], "lead": "Ansprechperson folgt", "intro": "Interlaken, Unterseen, Matten, Wilderswil, Brienz, Lauterbrunnen: nirgends ändern sich die Regeln so schnell wie hier. Die Regionalgruppe ist der Ort, um sich gegenüber den Gemeinden zu organisieren.",
+        {
+          "id": "lu-2026-12-03",
+          "datum": "2026-12-03",
+          "zeit": "18:30",
+          "ort": "Luzern, Ort folgt",
+          "titel": "Stammtisch Luzern: Erfahrungen mit der 90-Nächte-Regel",
+          "text": "Austausch unter Gastgebern zu Registrierungspflicht und 90-Nächte-Regel in der Stadt Luzern.",
+          "status": "geplant"
+        }
+      ]
+    },
+    {
+      "slug": "berner-oberland",
+      "name": "Berner Oberland",
+      "kantone": [
+        "BE"
+      ],
+      "lead": "Ansprechperson folgt",
+      "intro": "Interlaken, Unterseen, Matten, Wilderswil, Brienz, Lauterbrunnen: nirgends ändern sich die Regeln so schnell wie hier. Die Regionalgruppe ist der Ort, um sich gegenüber den Gemeinden zu organisieren.",
       "events": [
-        { "id": "io-2026-11-26", "datum": "2026-11-26", "zeit": "19:00", "ort": "Interlaken, Lokal folgt", "titel": "Stammtisch Bödeli: Die 90-Nächte-Initiative kommt vors Volk", "text": "Platzhalter-Termin." }
-      ] },
-    { "slug": "bern-mittelland", "name": "Bern und Mittelland", "kantone": ["BE", "SO", "FR"], "lead": "Ansprechperson folgt", "intro": "Stadt Bern, Thun, Solothurn und Freiburg.", "events": [] },
-    { "slug": "basel", "name": "Basel", "kantone": ["BS", "BL"], "lead": "Ansprechperson folgt", "intro": "Beide Basel. Die Registrierungspflicht ist beschlossen, die Ausgestaltung offen. Jetzt mitreden.", "events": [] },
-    { "slug": "romandie", "name": "Romandie", "kantone": ["GE", "VD", "NE", "JU"], "lead": "Ansprechperson folgt", "intro": "Genf, Waadt, Neuenburg und Jura. Treffen auf Französisch.", "events": [] },
-    { "slug": "wallis", "name": "Wallis", "kantone": ["VS"], "lead": "Ansprechperson folgt", "intro": "Die grösste Airbnb-Region der Schweiz. Zermatt, Verbier, Crans-Montana, Saas-Fee und die Täler.", "events": [] },
-    { "slug": "graubuenden", "name": "Graubünden", "kantone": ["GR"], "lead": "Ansprechperson folgt", "intro": "Davos, Klosters, Engadin, Arosa, Lenzerheide, Flims.", "events": [] },
-    { "slug": "ostschweiz", "name": "Ostschweiz", "kantone": ["SG", "TG", "AR", "AI", "SH", "GL"], "lead": "Ansprechperson folgt", "intro": "St. Gallen, Thurgau, beide Appenzell, Schaffhausen und Glarus.", "events": [] },
-    { "slug": "tessin", "name": "Tessin", "kantone": ["TI"], "lead": "Ansprechperson folgt", "intro": "Treffen auf Italienisch. Aktuell: die Motion für 180 statt 90 Tage.", "events": [] },
-    { "slug": "aargau", "name": "Aargau", "kantone": ["AG"], "lead": "Ansprechperson folgt", "intro": "Aarau, Baden, Zofingen und das Fricktal.", "events": [] }
+        {
+          "id": "io-2026-11-26",
+          "datum": "2026-11-26",
+          "zeit": "19:00",
+          "ort": "Interlaken, Ort folgt",
+          "titel": "Stammtisch Bödeli: Die 90-Nächte-Initiative",
+          "text": "Austausch unter Gastgebern aus Interlaken, Unterseen, Matten und Umgebung zur 90-Nächte-Initiative und den neuen Gemeinderegeln.",
+          "status": "geplant"
+        }
+      ]
+    },
+    {
+      "slug": "bern-mittelland",
+      "name": "Bern und Mittelland",
+      "kantone": [
+        "BE",
+        "SO",
+        "FR"
+      ],
+      "lead": "Ansprechperson folgt",
+      "intro": "Stadt Bern, Thun, Solothurn und Freiburg.",
+      "events": []
+    },
+    {
+      "slug": "basel",
+      "name": "Basel",
+      "kantone": [
+        "BS",
+        "BL"
+      ],
+      "lead": "Ansprechperson folgt",
+      "intro": "Beide Basel. Die Registrierungspflicht ist beschlossen, die Ausgestaltung offen. Jetzt mitreden.",
+      "events": []
+    },
+    {
+      "slug": "romandie",
+      "name": "Romandie",
+      "kantone": [
+        "GE",
+        "VD",
+        "NE",
+        "JU"
+      ],
+      "lead": "Ansprechperson folgt",
+      "intro": "Genf, Waadt, Neuenburg und Jura. Treffen auf Französisch.",
+      "events": []
+    },
+    {
+      "slug": "wallis",
+      "name": "Wallis",
+      "kantone": [
+        "VS"
+      ],
+      "lead": "Ansprechperson folgt",
+      "intro": "Die grösste Airbnb-Region der Schweiz. Zermatt, Verbier, Crans-Montana, Saas-Fee und die Täler.",
+      "events": []
+    },
+    {
+      "slug": "graubuenden",
+      "name": "Graubünden",
+      "kantone": [
+        "GR"
+      ],
+      "lead": "Ansprechperson folgt",
+      "intro": "Davos, Klosters, Engadin, Arosa, Lenzerheide, Flims.",
+      "events": []
+    },
+    {
+      "slug": "ostschweiz",
+      "name": "Ostschweiz",
+      "kantone": [
+        "SG",
+        "TG",
+        "AR",
+        "AI",
+        "SH",
+        "GL"
+      ],
+      "lead": "Ansprechperson folgt",
+      "intro": "St. Gallen, Thurgau, beide Appenzell, Schaffhausen und Glarus.",
+      "events": []
+    },
+    {
+      "slug": "tessin",
+      "name": "Tessin",
+      "kantone": [
+        "TI"
+      ],
+      "lead": "Ansprechperson folgt",
+      "intro": "Treffen auf Italienisch. Aktuell: die Motion für 180 statt 90 Tage.",
+      "events": []
+    },
+    {
+      "slug": "aargau",
+      "name": "Aargau",
+      "kantone": [
+        "AG"
+      ],
+      "lead": "Ansprechperson folgt",
+      "intro": "Aarau, Baden, Zofingen und das Fricktal.",
+      "events": []
+    }
   ]
 }

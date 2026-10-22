@@ -4,3 +4,4 @@ node_modules
 .DS_Store
 public/data/ch.json
 public/js/topojson-client.min.js
+public/fonts/

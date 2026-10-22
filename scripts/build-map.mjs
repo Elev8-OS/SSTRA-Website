@@ -56,3 +56,11 @@ fs.mkdirSync(path.join(root, 'public/data'), { recursive: true });
 fs.writeFileSync(path.join(root, 'public/data/ch.json'), JSON.stringify(t));
 fs.copyFileSync(require.resolve('topojson-client/dist/topojson-client.min.js'), path.join(root, 'public/js/topojson-client.min.js'));
 console.log(`Karte gebaut: ${t.objects.municipalities.geometries.length} Gemeinden, ${Math.round(fs.statSync(path.join(root, 'public/data/ch.json')).size / 1024)} KB`);
+
+/* Schrift (SIL OFL) selbst ausliefern, kein Aufruf an Google */
+const fontPkg = path.dirname(require.resolve('@fontsource-variable/hanken-grotesk/package.json'));
+fs.mkdirSync(path.join(root, 'public/fonts'), { recursive: true });
+for (const f of ['hanken-grotesk-latin-wght-normal.woff2', 'hanken-grotesk-latin-ext-wght-normal.woff2']) {
+  fs.copyFileSync(path.join(fontPkg, 'files', f), path.join(root, 'public/fonts', f));
+}
+console.log('Schriften kopiert');
