@@ -27,7 +27,7 @@ async function login(email) {
   assert.equal(r.status, 200);
   if (ghl.outbox.length === before) return null;
   const token = tokenFrom(ghl.outbox.at(-1));
-  const v = await fetch(base + '/auth/verify', { method: 'POST', redirect: 'manual', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: 'token=' + encodeURIComponent(token) });
+  const v = await fetch(base + '/auth/verify?token=' + encodeURIComponent(token), { redirect: 'manual' });
   const cookie = (v.headers.get('set-cookie') || '').split(';')[0];
   return { cookie, status: v.status, token };
 }
@@ -62,12 +62,21 @@ test('Login: unbekannte und nicht aktivierte Adressen bekommen keinen Link, Antw
 });
 
 let admin;
-test('Admin-Bootstrap, Magic Link ist nur einmal gültig', async () => {
+test('Admin-Bootstrap: Klick auf den Link loggt direkt ein; Mehrfachnutzung nur kurz erlaubt', async () => {
   admin = await login('chef@verband.ch');
   assert.equal(admin.status, 303);
   assert.ok(admin.cookie.startsWith('vsession='));
-  const again = await fetch(base + '/auth/verify', { method: 'POST', redirect: 'manual', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: 'token=' + encodeURIComponent(admin.token) });
-  assert.equal(again.status, 400);
+  // Mail-Scanner hat den Link vorab geöffnet: die Person kommt trotzdem rein
+  const again = await fetch(base + '/auth/verify?token=' + encodeURIComponent(admin.token), { redirect: 'manual' });
+  assert.equal(again.status, 303);
+  // nach der Grace-Zeit ist der Link verbraucht
+  const { MAGIC_GRACE_MS } = await import('../lib/auth.js');
+  const real = Date.now; Date.now = () => real() + MAGIC_GRACE_MS + 1000;
+  try {
+    const late = await fetch(base + '/auth/verify?token=' + encodeURIComponent(admin.token), { redirect: 'manual' });
+    assert.equal(late.status, 400);
+  } finally { Date.now = real; }
+  assert.equal((await fetch(base + '/auth/verify?token=kaputt', { redirect: 'manual' })).status, 400);
 });
 
 test('Ohne Login: kein Zugriff auf geschützte Bereiche', async () => {
@@ -164,5 +173,16 @@ test('Herkunft: www und ohne www gelten, fremde Herkunft nicht; Alias-Host wird 
     const http = await import('node:http');
     const r = await new Promise((resolve) => http.get({ port: server.address().port, path: '/regionen', headers: { Host: 'sstra.ch' } }, resolve));
     assert.equal(r.statusCode, 301); assert.equal(r.headers.location, 'https://www.sstra.ch/regionen');
+  } finally { config.baseUrl = prev; }
+});
+
+test('Alte Mails: POST auf /auth/verify funktioniert weiter, auch mit Origin: null', async () => {
+  const { config } = await import('../lib/config.js');
+  const prev = config.baseUrl; config.baseUrl = 'https://www.sstra.ch';
+  try {
+    const r = await fetch(base + '/auth/verify', { method: 'POST', redirect: 'manual', headers: { 'Content-Type': 'application/x-www-form-urlencoded', Origin: 'null' }, body: 'token=kaputt' });
+    assert.equal(r.status, 400); // ungültiger Token, aber nicht 403
+    const h = await fetch(base + '/health');
+    assert.equal(h.headers.get('referrer-policy'), 'strict-origin-when-cross-origin');
   } finally { config.baseUrl = prev; }
 });
