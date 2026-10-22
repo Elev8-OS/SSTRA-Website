@@ -8,7 +8,7 @@ import fs from 'node:fs';
 import { marked } from 'marked';
 import { config, isProd } from './lib/config.js';
 import { TAG, roleTag, planTag, userFromContact, isBoard, tagValue } from './lib/roles.js';
-import { loadUser, requireRole, sameOrigin, startSession, endSession, consumeMagic, readPayToken } from './lib/auth.js';
+import { loadUser, requireRole, sameOrigin, canonicalHost, startSession, endSession, consumeMagic, readPayToken } from './lib/auth.js';
 import { activateMember, approveApplication, rejectApplication, setRole, payLink, loginLink } from './lib/membership.js';
 import { esc, page, mailHtml, ROLE_LABEL } from './lib/views.js';
 import { mountRegions } from './lib/regions.js';
@@ -42,6 +42,7 @@ export function createApp({ ghl, payments, geoFetch }) {
   }));
 
   app.get('/health', (_req, res) => res.json({ ok: true }));
+  app.use(canonicalHost);
 
   // ---- Stripe-Webhook (Rohdaten, vor express.json) ----
   app.post('/api/stripe/webhook', express.raw({ type: 'application/json' }), async (req, res) => {
@@ -182,7 +183,7 @@ export function createApp({ ghl, payments, geoFetch }) {
   app.get('/auth/verify', (req, res) => {
     const token = esc(String(req.query.token || ''));
     res.send(page({ title: 'Anmelden', body: `<div class="card narrow"><h1 class="display h-m">Anmelden</h1><p>Bestätige die Anmeldung im Mitgliederbereich.</p>
-      <form method="post" action="/auth/verify"><input type="hidden" name="token" value="${token}"><button class="btn btn-red" type="submit">Jetzt anmelden</button></form></div>` }));
+      <form method="post" action="${config.baseUrl}/auth/verify"><input type="hidden" name="token" value="${token}"><button class="btn btn-red" type="submit">Jetzt anmelden</button></form></div>` }));
   });
   app.post('/auth/verify', async (req, res) => {
     try {

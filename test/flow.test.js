@@ -149,3 +149,20 @@ test('Entzug der Rolle sperrt Zugang beim nächsten Login', async () => {
   await ghl.removeTags(c.id, ['status:aktiv', 'rolle:foerdermitglied']);
   assert.equal(await login('pia@partner.ch'), null);
 });
+
+test('Herkunft: www und ohne www gelten, fremde Herkunft nicht; Alias-Host wird umgeleitet', async () => {
+  const { allowedOrigins } = await import('../lib/auth.js');
+  process.env.BASE_URL = 'https://www.sstra.ch';
+  const { config } = await import('../lib/config.js');
+  const prev = config.baseUrl; config.baseUrl = 'https://www.sstra.ch';
+  try {
+    assert.deepEqual(allowedOrigins().sort(), ['https://sstra.ch', 'https://www.sstra.ch']);
+    const bad = await fetch(base + '/api/newsletter', { method: 'POST', headers: { 'Content-Type': 'application/json', Origin: 'https://boese.example' }, body: '{}' });
+    assert.equal(bad.status, 403);
+    const okNoWww = await fetch(base + '/api/newsletter', { method: 'POST', headers: { 'Content-Type': 'application/json', Origin: 'https://sstra.ch' }, body: '{}' });
+    assert.notEqual(okNoWww.status, 403);
+    const http = await import('node:http');
+    const r = await new Promise((resolve) => http.get({ port: server.address().port, path: '/regionen', headers: { Host: 'sstra.ch' } }, resolve));
+    assert.equal(r.statusCode, 301); assert.equal(r.headers.location, 'https://www.sstra.ch/regionen');
+  } finally { config.baseUrl = prev; }
+});
