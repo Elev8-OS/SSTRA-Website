@@ -12,6 +12,7 @@ import { loadUser, requireRole, sameOrigin, startSession, endSession, consumeMag
 import { activateMember, approveApplication, rejectApplication, setRole, payLink, loginLink } from './lib/membership.js';
 import { esc, page, mailHtml, ROLE_LABEL } from './lib/views.js';
 import { mountRegions } from './lib/regions.js';
+import { mountAddress } from './lib/address.js';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const clean = (v, max = 200) => String(v ?? '').trim().slice(0, max);
@@ -21,7 +22,7 @@ const here = path.dirname(new URL(import.meta.url).pathname);
 
 const docs = () => JSON.parse(fs.readFileSync(path.join(here, 'content/members/index.json'), 'utf8'));
 
-export function createApp({ ghl, payments }) {
+export function createApp({ ghl, payments, geoFetch }) {
   const app = express();
   app.set('trust proxy', 1); // Railway sitzt hinter einem Proxy
   app.disable('x-powered-by');
@@ -275,6 +276,7 @@ export function createApp({ ghl, payments }) {
 
   // ---- Regionen und Stammtische ----
   mountRegions(app, { ghl, users });
+  mountAddress(app, { fetchJson: geoFetch });
 
   // ---- Statische Website ----
   app.use(express.static(path.join(here, 'public'), { extensions: ['html'], maxAge: isProd ? '1h' : 0 }));
