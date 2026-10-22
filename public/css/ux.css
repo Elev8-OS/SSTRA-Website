@@ -1,0 +1,152 @@
+/* ============ UX-Durchgang (lädt nach site.css und überschreibt gezielt) ============ */
+
+/* Schrift selbst gehostet (SIL OFL), kein Aufruf an Google */
+@font-face{font-family:'Hanken Grotesk';font-style:normal;font-weight:100 900;font-display:swap;src:url(/fonts/hanken-grotesk-latin-wght-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Hanken Grotesk';font-style:normal;font-weight:100 900;font-display:swap;src:url(/fonts/hanken-grotesk-latin-ext-wght-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+
+/* Grundlagen */
+[hidden]{display:none!important}
+html{scroll-padding-top:88px}
+h1,h2,h3{text-wrap:balance}
+.h-xl{font-size:clamp(2.6rem,6.2vw,5.4rem)}
+.h-l{font-size:clamp(2rem,4.3vw,3.7rem)}
+section{padding:clamp(56px,7vw,104px) 0}
+.src{display:inline-block;padding:7px 3px;margin:-7px 0}
+
+/* Kopfzeile */
+.bar{min-height:72px;gap:24px}
+.logo span,.bar .btn,.menu-extra .btn{white-space:nowrap}
+nav.main ul{gap:24px}
+.menu-extra .login-link{display:inline-block}
+@media (max-width:1080px){
+  header.site.open .menu-extra{flex-wrap:wrap;gap:16px}
+  header.site.open .menu-extra .login-link{display:inline-block;font-size:1.05rem}
+  header.site.open nav.main{max-height:calc(100vh - 72px);overflow:auto}
+}
+
+/* Einstieg */
+.hero{overflow:visible;padding:0}
+.hero .wrap{padding-top:clamp(36px,5vw,72px);padding-bottom:32px}
+.eyebrow{font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;color:#bdbdbd;margin-bottom:22px;font-weight:500}
+.hero .lead{margin-top:26px;max-width:36em}
+.addr-hero{margin-top:36px;max-width:700px}
+.addr-hero .addr-label{color:#fff;font-size:1.05rem}
+.addr-hero .addr-row input{border-color:#fff}
+.addr-hero .addr-msg{color:#cfcfcf}
+.addr-hero .addr-list{color:#000}
+.addr-chips{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center;margin-top:6px;font-size:.92rem;color:#bdbdbd}
+.addr-chips a{border:1px solid #666;border-radius:999px;padding:7px 15px;text-decoration:none;color:#fff;transition:background .15s,color .15s}
+.addr-chips a:hover{background:#fff;color:#000}
+.hero .cta-row{margin-top:24px}
+.hero-stats{display:grid;grid-template-columns:repeat(4,auto);justify-content:space-between;gap:18px 32px;margin-top:clamp(32px,4vw,48px);padding-top:22px;border-top:1px solid #333}
+.hero-stats dt{font-size:.85rem;color:#a8a8a8}
+.hero-stats dd{font-size:clamp(1.7rem,3vw,2.5rem);font-weight:300;letter-spacing:-.03em;line-height:1.1}
+@media (max-width:640px){.hero-stats{grid-template-columns:1fr 1fr}}
+
+/* Regelradar */
+.map-selects{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+.map-select{margin-left:0}
+@media (max-width:480px){.map-selects{margin-left:0;width:100%}.map-selects .map-select{flex:1 1 100%}.map-selects select{width:100%}}
+.canton.t-talk,.muni.has-rule.t-talk{fill:url(#hatch)}
+.sw-talk{background:repeating-linear-gradient(45deg,#fff 0 3px,#000 3px 5px)!important;border-color:#000!important}
+.lbl{font-size:17px}
+.lbl.on-dark{fill:#fff;stroke:none}
+.lbl.on-light{fill:#111;stroke:#fff;stroke-width:3.5px;paint-order:stroke}
+@media (min-width:901px){.rule-panel{position:sticky;top:96px;max-height:calc(100vh - 120px);overflow:auto}}
+.rule-panel .chiplist{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.rule-panel .chiplist a{display:inline-block;background:#fff;border-radius:999px;padding:9px 16px;text-decoration:none;font-weight:600;font-size:.95rem}
+.rule-panel .chiplist a:hover{background:#000;color:#fff}
+.rule-panel .chiplist li+li{margin-top:0}
+.rule-panel .lead-sm{font-size:1.05rem;margin:10px 0 0}
+.rule-panel .share a+a{margin-left:14px}
+.bund-box{margin-top:48px}
+.bund-box ul{columns:2;column-gap:44px}
+.bund-box li{break-inside:avoid}
+@media (max-width:900px){.bund-box ul{columns:1}}
+
+/* Zahlen */
+.facts{background:#000;color:#fff}
+.fact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid #444;margin-top:clamp(28px,4vw,48px)}
+.fact{padding:28px 24px 8px 0}
+.fact+.fact{padding-left:24px;border-left:1px solid #444}
+.fact strong{display:block;font-size:clamp(3rem,5.4vw,4.8rem);font-weight:300;letter-spacing:-.04em;line-height:1}
+.fact figcaption{margin-top:14px;color:#d4d4d4;font-size:1rem;max-width:22em}
+.fact .src{color:#a8a8a8;font-size:.85rem;text-decoration:underline;text-underline-offset:3px;margin-left:2px}
+.fact .src:hover{color:#fff}
+.fact-note{margin-top:32px;color:#a8a8a8;font-size:.92rem}
+@media (max-width:900px){
+  .fact-grid{grid-template-columns:1fr 1fr;column-gap:24px}
+  .fact,.fact+.fact{padding:24px 0 8px;border-left:0;border-top:1px solid #444}
+  .fact-grid{border-top:0}
+}
+@media (max-width:480px){.fact-grid{grid-template-columns:1fr}}
+
+/* Ticker */
+.ticker-sub{font-size:.85rem;text-transform:uppercase;letter-spacing:.08em;color:var(--grey-text);margin:36px 0 12px;font-weight:600}
+.ticker-sub:first-of-type{margin-top:0}
+.ticker-list{list-style:none;border-top:1px solid #000}
+.ticker-list li{display:grid;grid-template-columns:150px 1fr auto;gap:8px 24px;padding:22px 0;border-bottom:1px solid #000;align-items:baseline}
+.ticker-list time,.ticker-list .when-open{font-weight:600;font-size:.98rem}
+.ticker-list .when-open{color:var(--grey-text);font-weight:500}
+.ticker-list .kind{font-size:.78rem;font-weight:600;background:var(--grey);padding:3px 12px;border-radius:999px;margin-right:10px;white-space:nowrap;vertical-align:2px}
+.ticker-list strong{font-weight:500;font-size:1.12rem;line-height:1.35}
+.ticker-list .where{display:block;color:var(--grey-text);font-size:.92rem;margin-top:5px}
+.ticker-list .links{display:flex;gap:18px;font-size:.92rem;white-space:nowrap}
+.ticker-list .links a{color:inherit;text-underline-offset:3px}
+@media (max-width:760px){.ticker-list li{grid-template-columns:1fr}.ticker-list .links{margin-top:4px}}
+
+/* Beitrittsablauf */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;list-style:none;counter-reset:s;margin-bottom:36px}
+.steps li{counter-increment:s;background:var(--grey);border-radius:var(--radius-panel);padding:24px 28px;color:var(--grey-text);font-size:1rem}
+.steps li::before{content:counter(s);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:#000;color:#fff;font-weight:600;margin-bottom:12px}
+.steps strong{display:block;color:#000;font-size:1.15rem;margin-bottom:4px}
+@media (max-width:760px){.steps{grid-template-columns:1fr}}
+.plan .price.price-note{font-size:1.45rem;line-height:1.2}
+.plan .price.price-note small{display:block;margin-top:6px;font-size:.88rem}
+
+/* Termine */
+.tag-planned{display:inline-block;align-self:flex-start;font-size:.75rem;font-weight:600;background:#fff;border:1px solid #000;border-radius:999px;padding:2px 10px;margin-left:6px;color:#000;vertical-align:2px;letter-spacing:0}
+.event-tile .tag-planned{margin-left:0}
+.grid2>div>.card+.card{margin-top:24px}
+
+/* Öffentliche Unterseiten (Kantone, Regionen) */
+.crumbs{font-size:.92rem;color:var(--grey-text);margin-bottom:22px}
+.crumbs a{color:inherit}
+.meta-line{display:flex;gap:14px 18px;align-items:center;flex-wrap:wrap;color:var(--grey-text);font-size:.95rem;margin-top:20px}
+.rule-layout{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:32px;align-items:start;margin-top:32px}
+.rule-side{position:sticky;top:96px}
+.rule-side .card+.card{margin-top:24px}
+@media (max-width:900px){.rule-layout{grid-template-columns:1fr}.rule-side{position:static}}
+.rule-body section{margin-bottom:40px}
+.rule-body h2,.rule-group h2{font-size:1.6rem;font-weight:500;letter-spacing:-.02em;margin:0 0 14px}
+.rule-group h2 small{font-size:.9rem;color:var(--grey-text);font-weight:400;margin-left:8px}
+.rule-group{margin-top:44px}
+.rule-body h3{font-size:1.25rem;font-weight:600;margin:30px 0 10px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;scroll-margin-top:96px}
+.rule-body .badge{margin-bottom:0}
+.srcs{padding-left:1.2em;font-size:1.05rem}
+.srcs li+li{margin-top:.7em}
+.srcs .src{color:var(--grey-text);font-size:.82rem;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+.chips-nav{display:flex;flex-wrap:wrap;gap:8px;margin-top:40px;padding-top:28px;border-top:1px solid var(--grey-mid)}
+.chips-nav a{border:1px solid #000;border-radius:999px;padding:7px 15px;text-decoration:none;font-size:.92rem}
+.chips-nav a:hover,.chips-nav a[aria-current]{background:#000;color:#fff}
+.portal .region-grid{margin-top:12px}
+
+/* Menü auf dem Handy: Login und Knopf sauber untereinander */
+@media (max-width:1080px){
+  header.site.open .menu-extra{flex-direction:column;align-items:stretch;gap:10px;padding:18px 0 4px;border-bottom:0}
+  header.site.open nav.main .menu-extra a{display:block;text-align:center}
+  header.site.open nav.main .menu-extra .login-link{padding:12px 0;font-size:1.05rem}
+  header.site.open nav.main .menu-extra .btn{padding:15px 28px;font-size:1.05rem}
+}
+/* Zahlen: Quelle und Kantonsseite als eigene Zeile */
+.fact-links{display:flex;flex-wrap:wrap;gap:4px 16px;margin-top:10px}
+.fact-links .src{margin:0;padding:5px 0}
+/* Regelradar auf dem Handy: Karte, dann Ergebnis, dann Legende */
+@media (max-width:900px){
+  .rules-grid{gap:20px}
+  .rules-grid>div:first-child{display:contents}
+  .rules-grid .map-wrap{order:1}
+  .rules-grid .rule-panel{order:2}
+  .rules-grid .legend{order:3;margin-top:0}
+  .rules-grid .geo-credit{order:4;margin-top:0}
+}

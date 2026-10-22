@@ -3,13 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Swiss Short Term Rental Association | Schweizer Verband für Kurzzeitvermietung</title>
-<meta name="description" content="Der Schweizer Verband für Kurzzeitvermietung: Wir vernetzen Gastgeber, setzen Standards und reden mit, wenn über die Regeln entschieden wird.">
-<meta name="color-scheme" content="light">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>Regelradar Kurzzeitvermietung Schweiz | Swiss Short Term Rental</title>
+<meta name="description" content="Was gilt für Airbnb und Kurzzeitvermietung an deiner Adresse? Der Schweizer Verband für Kurzzeitvermietung zeigt die Regeln aller 26 Kantone und vieler Gemeinden, mit Quellen. Dazu Stammtische, Standards und Mitgliedschaft.">
+<link rel="canonical" href="%%BASE%%/">
+<meta property="og:title" content="Regelradar Kurzzeitvermietung Schweiz | Swiss Short Term Rental">
+<meta property="og:description" content="Was gilt für Airbnb und Kurzzeitvermietung an deiner Adresse? Regeln aller Kantone und vieler Gemeinden, mit Quellen.">
+<meta property="og:type" content="website"><meta property="og:url" content="%%BASE%%/"><meta property="og:locale" content="de_CH"><meta property="og:site_name" content="Swiss Short Term Rental Association">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/css/site.css">
+<link rel="stylesheet" href="/css/ux.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Schweizer Verband für Kurzzeitvermietung","alternateName":"Swiss Short Term Rental Association","url":"%%BASE%%/","email":"info@hostsummit.ch"},{"@type":"WebSite","name":"Swiss Short Term Rental Association","url":"%%BASE%%/","inLanguage":"de-CH"}]}</script>
 </head>
 <body>
 <a class="skip" href="#inhalt">Zum Inhalt springen</a>
@@ -17,27 +22,21 @@
 <!-- ============ HEADER ============ -->
 <header class="site" id="top">
   <div class="wrap bar">
-    <a class="logo" href="#top" aria-label="Swiss Short Term Rental Association, Startseite">
+    <a class="logo" href="/" aria-label="Swiss Short Term Rental Association, Startseite">
       <svg viewBox="0 0 40 46" aria-hidden="true"><path d="M20 2 3 8v16c0 10 7 17 17 20 10-3 17-10 17-20V8L20 2Z" fill="none" stroke="#fff" stroke-width="3"/><path d="M12 24l8-7 8 7v8H12v-8Z" fill="#fff"/><rect x="18" y="26" width="4" height="6" fill="#000"/></svg>
       <span>Swiss Short<br>Term Rental</span>
     </a>
-    <nav class="main" aria-label="Hauptnavigation">
+    <nav class="main" id="nav" aria-label="Hauptnavigation">
       <ul>
-        <li><a href="#verband">Verband</a></li>
-        <li><a href="#regeln">Regeln</a></li>
-        <li><a href="/regionen">Regionen</a></li>
-        <li><a href="#standards">Standards</a></li>
-        <li><a href="#mitglied">Mitgliedschaft</a></li>
-        <li><a href="#studie">Studie</a></li>
+        <li><a href="#regeln">Regelradar</a></li>
         <li><a href="#aktuell">Aktuell</a></li>
-        <li class="menu-extra">
-          <a class="btn btn-red" href="/mitglied-werden.html">Mitglied werden</a>
-          <span class="lang" aria-label="Sprache"><a href="#" aria-current="true">DE</a><a href="#" title="folgt">FR</a><a href="#" title="folgt">IT</a><a href="#" title="folgt">EN</a></span>
-        </li>
+        <li><a href="/regionen">Regionen</a></li>
+        <li><a href="#verband">Verband</a></li>
+        <li><a href="#mitglied">Mitgliedschaft</a></li>
+        <li class="menu-extra"><!--LOGIN--><a class="btn btn-red" href="/mitglied-werden.html">Mitglied werden</a></li>
       </ul>
     </nav>
-    <div class="lang" aria-label="Sprache"><a href="#" aria-current="true" lang="de">DE</a><a href="#" lang="fr" title="folgt">FR</a><a href="#" lang="it" title="folgt">IT</a><a href="#" lang="en" title="folgt">EN</a></div>
-    <a class="login-link" href="/login.html">Login</a>
+    <!--LOGIN-->
     <a class="btn btn-white" href="/mitglied-werden.html">Mitglied werden</a>
     <button class="burger" type="button" aria-expanded="false" aria-controls="nav">Menü</button>
   </div>
@@ -46,18 +45,80 @@
 <main id="inhalt">
 
 <!-- ============ HERO ============ -->
-<section class="hero" style="padding:0">
+<section class="hero">
   <div class="wrap">
+    <p class="eyebrow">Schweizer Verband für Kurzzeitvermietung</p>
     <h1 class="display h-xl">Die Stimme der Schweizer Gastgeber.</h1>
     <p class="lead">Wir vernetzen Gastgeber, setzen Standards und reden mit, wenn über die Regeln der Kurzzeitvermietung entschieden wird.</p>
+
+    <form class="addr addr-hero" id="addrForm" autocomplete="off" role="search">
+      <label for="addrInput" class="addr-label">Was gilt an meiner Adresse?</label>
+      <div class="addr-row">
+        <input id="addrInput" type="search" placeholder="Adresse oder Gemeinde eingeben" aria-autocomplete="list" aria-controls="addrList" aria-expanded="false">
+        <button class="btn btn-red" type="submit">Prüfen</button>
+      </div>
+      <ul class="addr-list" id="addrList" role="listbox" hidden></ul>
+      <p class="addr-msg" id="addrMsg" role="status"></p>
+      <p class="addr-chips">Häufig gefragt: <a href="#regeln/ZH">Zürich</a><a href="#regeln/LU">Luzern</a><a href="#regeln/BE/581">Interlaken</a><a href="#regeln/GE">Genf</a><a href="#regeln/BS">Basel</a><a href="#regeln/TI">Tessin</a></p>
+    </form>
+
     <div class="cta-row">
-      <a class="btn btn-red" href="/mitglied-werden.html">Mitglied werden</a>
-      <a class="btn btn-line" href="#regeln">Regeln in deiner Gemeinde</a>
+      <a class="btn btn-line" href="/mitglied-werden.html">Mitglied werden</a>
+      <a class="btn btn-line" href="/regeln">Alle Kantone im Überblick</a>
     </div>
-    <div class="hero-foot" aria-label="Eckdaten">
-      <span>Entstanden am<br>Host Summit Olten</span>
-      <span>26 Kantone.<br>Ein Branchenverband.</span>
+    <!--HERO_STATS-->
+  </div>
+</section>
+
+<!-- ============ REGELRADAR ============ -->
+<section id="regeln" class="on-light">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="display h-l">Regelradar: Was gilt bei dir?</h2>
+      <p class="lead">Die Schweiz kennt kein einheitliches Gesetz. Regeln machen Bund, Kantone und Gemeinden. Wähle deinen Kanton, dann deine Gemeinde. Jede Aussage ist mit einer Quelle belegt. <span id="standDatum" class="stand"></span></p>
     </div>
+    <div class="rules-grid">
+      <div>
+        <div class="map-wrap" id="mapWrap">
+          <div class="map-bar">
+            <button class="btn btn-line-dark small" id="mapBack" type="button" hidden>← Ganze Schweiz</button>
+            <span class="map-title" id="mapTitle">Schweiz · Kanton anklicken</span>
+            <div class="map-selects">
+              <label class="map-select"><span class="sr-only">Kanton wählen</span><select id="kantonSelect"><option value="">Kanton wählen …</option></select></label>
+              <label class="map-select" id="gemWrap" hidden><span class="sr-only">Gemeinde wählen</span><select id="gemSelect"><option value="">Gemeinde wählen …</option></select></label>
+            </div>
+          </div>
+          <svg id="chMap" viewBox="0 0 1000 650" role="img" aria-label="Karte der Schweiz mit Regeln pro Kanton und Gemeinde">
+            <defs><pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="7" height="7" fill="#fff"/><rect width="2.4" height="7" fill="#000"/></pattern></defs>
+          </svg>
+          <noscript><p style="padding:16px">Die Karte braucht JavaScript. Alle Kantone findest du auch <a href="/regeln">als Liste</a>.</p></noscript>
+          <div class="map-tip" id="mapTip" hidden></div>
+        </div>
+        <div class="legend" aria-hidden="true">
+          <span><i style="background:var(--red)"></i>Beschränkung</span>
+          <span><i style="background:#111"></i>Registrierung / Bewilligung</span>
+          <span><i style="background:#6b6b6b"></i>Abgaben via Plattform</span>
+          <span><i class="sw-talk"></i>In Diskussion</span>
+          <span><i style="background:#d9d9d9"></i>Keine Sonderregel bekannt</span>
+        </div>
+        <p class="geo-credit" id="geoCredit"></p>
+      </div>
+      <div class="rule-panel" id="panel" aria-live="polite"></div>
+    </div>
+    <div class="bund-box" id="bund" aria-label="Bundesebene"></div>
+  </div>
+</section>
+
+<!--ZAHLEN-->
+
+<!-- ============ AKTUELL ============ -->
+<section id="aktuell" class="on-light">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="display h-l">Was sich gerade ändert</h2>
+      <p class="lead">Gerichtsurteile, Abstimmungen und neue Regeln, die Gastgeber betreffen. Jeder Eintrag verweist auf die Quelle und auf die betroffene Regel.</p>
+    </div>
+    <!--TICKER-->
   </div>
 </section>
 
@@ -82,55 +143,15 @@
   </div>
 </section>
 
-<!-- ============ REGELN ============ -->
-<section id="regeln" class="on-light">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 class="display h-l">Regelradar: Was gilt bei dir?</h2>
-      <p class="lead">Die Schweiz kennt kein einheitliches Gesetz. Regeln machen Bund, Kantone und Gemeinden. Klicke auf einen Kanton, dann auf eine Gemeinde. Jede Aussage ist mit einer Quelle belegt. <span id="standDatum" class="stand"></span></p>
-    </div>
-    <div class="rules-grid">
-      <div>
-        <form class="addr" id="addrForm" autocomplete="off" role="search">
-          <label for="addrInput" class="addr-label">Was gilt an meiner Adresse?</label>
-          <div class="addr-row">
-            <input id="addrInput" type="search" placeholder="Strasse und Ort, oder Gemeinde" aria-autocomplete="list" aria-controls="addrList" aria-expanded="false">
-            <button class="btn btn-black" type="submit">Prüfen</button>
-          </div>
-          <ul class="addr-list" id="addrList" role="listbox" hidden></ul>
-          <p class="addr-msg" id="addrMsg" role="status"></p>
-        </form>
-        <div class="map-wrap">
-          <div class="map-bar"><button class="btn btn-line-dark small" id="mapBack" type="button" hidden>← Ganze Schweiz</button><span class="map-title" id="mapTitle">Schweiz · Kanton anklicken</span>
-            <label class="map-select"><span class="sr-only">Kanton wählen</span><select id="kantonSelect"><option value="">Kanton wählen …</option></select></label></div>
-          <svg id="chMap" viewBox="0 0 1000 650" role="img" aria-label="Karte der Schweiz mit Regeln pro Kanton und Gemeinde"></svg>
-          <div class="map-tip" id="mapTip" hidden></div>
-        </div>
-        <div class="legend" aria-hidden="true">
-          <span><i style="background:var(--red)"></i>Beschränkung</span>
-          <span><i style="background:#000"></i>Registrierung / Bewilligung</span>
-          <span><i style="background:#5b5b5b"></i>Abgaben via Plattform</span>
-          <span><i style="background:#fff;border-color:#000"></i>In Diskussion</span>
-          <span><i style="background:var(--grey)"></i>Keine Sonderregel bekannt</span>
-          <span><i style="background:var(--grey);position:relative"><b style="position:absolute;right:1px;bottom:1px;width:5px;height:5px;border-radius:50%;background:var(--red)"></b></i>Gemeinderegeln vorhanden</span>
-        </div>
-        <div class="bund-box" id="bund" aria-label="Bundesebene"></div>
-        <p class="geo-credit" id="geoCredit"></p>
-      </div>
-      <div class="rule-panel" id="panel" aria-live="polite"></div>
-    </div>
-  </div>
-</section>
-
 <!-- ============ STAMMTISCHE ============ -->
 <section class="stammtische on-light" id="stammtische">
   <div class="wrap">
     <div class="sec-head">
       <h2 class="display h-l">Stammtische in deiner Region</h2>
-      <p class="lead">Elf Regionalgruppen, von Genf bis Graubünden. Hier triffst du Gastgeber aus deiner Gegend und redest mit, wenn deine Gemeinde Regeln macht.</p>
+      <p class="lead">Elf Regionen, von Genf bis Graubünden. Die Gruppen sind im Aufbau, die ersten Stammtische sind geplant. Wer sich meldet, erfährt als Erste oder Erster, wann und wo.</p>
     </div>
-    <div class="events-home" id="eventsHome"><p>Termine werden geladen …</p></div>
-    <div class="cta-row"><a class="btn btn-black" href="/regionen">Alle Regionen</a><a class="btn btn-line-dark" href="/mitglied-werden.html?plan=regionalgruppe">Stammtisch starten</a></div>
+    <div class="events-home" id="eventsHome"><!--EVENTS--></div>
+    <div class="cta-row"><a class="btn btn-black" href="/regionen">Alle Regionen</a><a class="btn btn-line-dark" href="/mitglied-werden.html?plan=regionalgruppe">Gruppe mit aufbauen</a></div>
   </div>
 </section>
 
@@ -138,7 +159,7 @@
 <section class="standards on-light" id="standards">
   <div class="wrap std-grid">
     <div>
-      <h2 class="display h-l">Standards, auf die sich Gäste und Gemeinden verlassen können.</h2>
+      <h2 class="display h-l">Standards, auf die man sich verlassen kann.</h2>
       <p class="lead" style="margin-top:28px">Wer Mitglied ist, verpflichtet sich auf unseren Verhaltenskodex. Er zeigt: Professionelle Kurzzeitvermietung nimmt Verantwortung wahr.</p>
       <div class="seal">
         <svg viewBox="0 0 40 46" aria-hidden="true"><path d="M20 2 3 8v16c0 10 7 17 17 20 10-3 17-10 17-20V8L20 2Z" fill="none" stroke="#fff" stroke-width="2.5"/><path d="M13 23l5 5 10-11" fill="none" stroke="#C0100D" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -166,34 +187,39 @@
       <h2 class="display h-l">Mitglied werden</h2>
       <p class="lead">Je mehr Gastgeber wir sind, desto mehr Gewicht hat unsere Stimme. Wähle die Mitgliedschaft, die zu dir passt.</p>
     </div>
+    <ol class="steps" aria-label="So läuft der Beitritt ab">
+      <li><strong>Antrag senden</strong>Dauert zwei Minuten, ohne Zahlung.</li>
+      <li><strong>Vorstand prüft</strong>Du hörst in der Regel innert weniger Tage von uns.</li>
+      <li><strong>Beitrag und Zugang</strong>Du erfährst den Beitrag, bevor du etwas zahlst. Danach öffnet sich der Mitgliederbereich.</li>
+    </ol>
     <div class="plans">
       <article class="plan">
         <h3>Gastgeber</h3>
         <p class="who">Für Eigentümerinnen und Eigentümer, die selbst vermieten.</p>
         <ul><li>Stimmrecht an der Mitgliederversammlung</li><li>Wissens-Hub und Checklisten</li><li>Zugang zur Community</li></ul>
-        <p class="price">CHF –<small> / Jahr</small></p>
-        <a class="btn btn-black" href="/mitglied-werden.html?plan=gastgeber">Jetzt anmelden</a>
+        <p class="price price-note">Beitrag folgt<small>Du erfährst ihn vor der Zahlung.</small></p>
+        <a class="btn btn-black" href="/mitglied-werden.html?plan=gastgeber">Antrag stellen</a>
       </article>
       <article class="plan feature">
         <span class="tag">Für Profis</span>
         <h3>Property Manager</h3>
         <p class="who">Für Unternehmen, die Objekte für andere betreiben.</p>
         <ul><li>Stimmrecht an der Mitgliederversammlung</li><li>Kodex und Gütesiegel</li><li>Austausch unter Betreibern</li></ul>
-        <p class="price">CHF –<small> / Jahr, nach Anzahl Objekte</small></p>
-        <a class="btn btn-white" href="/mitglied-werden.html?plan=property-manager">Jetzt anmelden</a>
+        <p class="price price-note">Beitrag folgt<small>Nach Anzahl Objekte, du erfährst ihn vor der Zahlung.</small></p>
+        <a class="btn btn-white" href="/mitglied-werden.html?plan=property-manager">Antrag stellen</a>
       </article>
       <article class="plan">
         <h3>Regionalgruppe</h3>
         <p class="who">Für Gastgeber-Zusammenschlüsse in Kanton oder Gemeinde.</p>
         <ul><li>Lokale Vertretung gegenüber Gemeinden</li><li>Toolkit für Gespräche mit Behörden</li><li>Eigene Seite im Verband</li></ul>
-        <p class="price">CHF –<small> / Jahr</small></p>
+        <p class="price price-note">Beitrag folgt<small>Du erfährst ihn vor der Zahlung.</small></p>
         <a class="btn btn-black" href="/mitglied-werden.html?plan=regionalgruppe">Anfrage senden</a>
       </article>
       <article class="plan">
         <h3>Fördermitglied</h3>
         <p class="who">Für Technologie-, Service- und Plattformpartner.</p>
         <ul><li>Sichtbarkeit bei Anlässen und online</li><li>Austausch mit dem Vorstand</li><li>Kein Stimmrecht</li></ul>
-        <p class="price">CHF –<small> / Jahr</small></p>
+        <p class="price price-note">Beitrag folgt<small>Du erfährst ihn vor der Zahlung.</small></p>
         <a class="btn btn-black" href="/mitglied-werden.html?plan=foerdermitglied">Anfrage senden</a>
       </article>
     </div>
@@ -205,9 +231,9 @@
 <section class="study" id="studie">
   <div class="wrap study-grid">
     <div>
-      <h2 class="display h-l">Zum ersten Mal echte Schweizer Zahlen.</h2>
-      <p class="lead">Gemeinsam mit der HES-SO entsteht die erste nationale Marktstudie zur Kurzzeitvermietung. Sie liefert Daten, mit denen Gemeinden, Medien und Politik arbeiten können.</p>
-      <div class="cta-row"><a class="btn btn-red" href="#kontakt">Studie anfordern</a></div>
+      <h2 class="display h-l">Die erste nationale Marktstudie.</h2>
+      <p class="lead">Gemeinsam mit der HES-SO entsteht die erste nationale Marktstudie zur Kurzzeitvermietung. Sie soll Daten liefern, mit denen Gemeinden, Medien und Politik arbeiten können.</p>
+      <div class="cta-row"><a class="btn btn-red" href="#newsletter">Bei Erscheinen informiert werden</a></div>
     </div>
     <aside class="study-card" aria-label="Eckdaten Studie">
       <dl>
@@ -216,47 +242,6 @@
         <div><dt>Vorgestellt am</dt><dd>Host Summit, FHNW Olten</dd></div>
       </dl>
     </aside>
-  </div>
-</section>
-
-<!-- ============ STIMMEN ============ -->
-<section class="on-light">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 class="display h-l">Wer vermietet, und warum?</h2>
-      <p class="lead">Hinter jeder Wohnung steht ein Mensch. Hier erzählen Gastgeber aus der ganzen Schweiz, was Kurzzeitvermietung für sie und ihre Region bedeutet.</p>
-    </div>
-    <div class="voices">
-      <figure class="voice">
-        <div class="avatar" aria-hidden="true">AB</div>
-        <blockquote>Platzhalter: Zitat einer Gastgeberin aus dem Berner Oberland über Gäste, Handwerker und Dorfläden.</blockquote>
-        <cite>Name, Ort, Anzahl Objekte</cite>
-      </figure>
-      <figure class="voice">
-        <div class="avatar" aria-hidden="true">CD</div>
-        <blockquote>Platzhalter: Zitat eines Property Managers aus der Stadt über Arbeitsplätze und Qualität.</blockquote>
-        <cite>Name, Ort, Unternehmen</cite>
-      </figure>
-      <figure class="voice">
-        <div class="avatar" aria-hidden="true">EF</div>
-        <blockquote>Platzhalter: Zitat eines Gastgebers aus der Romandie oder dem Tessin.</blockquote>
-        <cite>Name, Ort, Anzahl Objekte</cite>
-      </figure>
-    </div>
-  </div>
-</section>
-
-<!-- ============ AKTUELL ============ -->
-<section id="aktuell" class="on-light" style="padding-top:0">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 class="display h-l">Aktuell</h2>
-    </div>
-    <ul class="news-list">
-      <li><time datetime="2026-10-01">Datum folgt</time><a href="#">Platzhalter: Positionspapier zur Regulierung der Kurzzeitvermietung</a><span class="kind">Position</span></li>
-      <li><time datetime="2026-10-01">Datum folgt</time><a href="#">Platzhalter: Verband gegründet, das sind die nächsten Schritte</a><span class="kind">Verband</span></li>
-      <li><time datetime="2026-10-01">Datum folgt</time><a href="#">Platzhalter: Gastgeber-Stammtisch in deiner Region</a><span class="kind">Anlass</span></li>
-    </ul>
   </div>
 </section>
 
@@ -280,14 +265,13 @@
       <h2 class="display h-l">Sei dabei, wenn die Regeln entstehen.</h2>
       <div class="cta-row"><a class="btn btn-white" href="/mitglied-werden.html">Mitglied werden</a><a class="btn btn-line" href="mailto:info@hostsummit.ch">Kontakt aufnehmen</a></div>
     </div>
-    <form class="news-form" id="newsForm" novalidate>
-      <!-- sendet an /api/newsletter, dort Anbindung an GHL -->
-      <label for="email">Newsletter: News und Termine für Gastgeber</label>
+    <form class="news-form" id="newsletter" novalidate>
+      <label for="email">Newsletter: neue Regeln und Termine für Gastgeber</label>
       <div class="row">
         <input id="email" name="email" type="email" placeholder="deine@email.ch" autocomplete="email" required>
         <button class="btn btn-black" type="submit">Anmelden</button>
       </div>
-      <label class="check"><input type="checkbox" required> Ich möchte den Newsletter erhalten und akzeptiere die Datenschutzerklärung.</label>
+      <label class="check"><input type="checkbox" required> Ich möchte den Newsletter erhalten und akzeptiere die <a href="/datenschutz.html">Datenschutzerklärung</a>.</label>
       <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
       <p class="form-msg" role="status"></p>
     </form>
@@ -301,18 +285,20 @@
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <a class="logo" href="#top"><svg viewBox="0 0 40 46" aria-hidden="true"><path d="M20 2 3 8v16c0 10 7 17 17 20 10-3 17-10 17-20V8L20 2Z" fill="none" stroke="#fff" stroke-width="3"/><path d="M12 24l8-7 8 7v8H12v-8Z" fill="#fff"/><rect x="18" y="26" width="4" height="6" fill="#000"/></svg><span>Swiss Short<br>Term Rental</span></a>
+        <a class="logo" href="/"><svg viewBox="0 0 40 46" aria-hidden="true"><path d="M20 2 3 8v16c0 10 7 17 17 20 10-3 17-10 17-20V8L20 2Z" fill="none" stroke="#fff" stroke-width="3"/><path d="M12 24l8-7 8 7v8H12v-8Z" fill="#fff"/><rect x="18" y="26" width="4" height="6" fill="#000"/></svg><span>Swiss Short<br>Term Rental</span></a>
         <p style="margin-top:18px;color:#a8a8a8;font-size:1rem">Schweizer Verband für Kurzzeitvermietung</p>
       </div>
+      <div><h4>Wissen</h4><ul><li><a href="#regeln">Regelradar</a></li><li><a href="/regeln">Alle Kantone</a></li><li><a href="/regionen">Regionalgruppen</a></li><li><a href="#aktuell">Aktuell</a></li><li><a href="#studie">Marktstudie</a></li></ul></div>
       <div><h4>Verband</h4><ul><li><a href="#verband">Aufgaben</a></li><li><a href="#standards">Standards</a></li><li><a href="#mitglied">Mitgliedschaft</a></li></ul></div>
-      <div><h4>Wissen</h4><ul><li><a href="#regeln">Regeln in deiner Gemeinde</a></li><li><a href="/regionen">Regionalgruppen</a></li><li><a href="#studie">Marktstudie</a></li><li><a href="#aktuell">Aktuell</a></li></ul></div>
       <div><h4>Kontakt</h4><ul><li><a href="mailto:info@hostsummit.ch">info@hostsummit.ch</a></li><li><a href="/login.html">Mitglieder-Login</a></li><li><a href="/impressum.html">Impressum</a></li><li><a href="/datenschutz.html">Datenschutz</a></li></ul></div>
     </div>
-    <div class="foot-base"><span>© 2026 Schweizer Verband für Kurzzeitvermietung</span><span>Medienpartner: Hotelinside</span></div>
+    <div class="foot-base"><span>© 2026 Schweizer Verband für Kurzzeitvermietung · Medienpartner: Hotelinside</span><span><a href="/data/regeln.json">Regelradar als offene Daten (JSON)</a></span></div>
   </div>
 </footer>
 
 <script src="/js/topojson-client.min.js"></script>
+<script src="/js/menu.js" defer></script>
+<script src="/js/radar.js" defer></script>
 <script src="/js/site.js" defer></script>
 </body>
 </html>
