@@ -28,6 +28,8 @@ export function createApp({ ghl, payments, geoFetch }) {
   app.disable('x-powered-by');
   app.use(compression());
   app.use(helmet({
+    // Standardwert statt no-referrer: sonst schickt Chrome bei Formularen «Origin: null» und die Herkunftsprüfung schlägt fehl
+    referrerPolicy: { policy: 'strict-origin-when-cross-origin' },
     contentSecurityPolicy: {
       directives: {
         defaultSrc: ["'self'"],
