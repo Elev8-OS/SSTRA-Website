@@ -1,5 +1,6 @@
 import express from 'express';
 import helmet from 'helmet';
+import compression from 'compression';
 import cookieParser from 'cookie-parser';
 import rateLimit from 'express-rate-limit';
 import path from 'node:path';
@@ -24,6 +25,7 @@ export function createApp({ ghl, payments }) {
   const app = express();
   app.set('trust proxy', 1); // Railway sitzt hinter einem Proxy
   app.disable('x-powered-by');
+  app.use(compression());
   app.use(helmet({
     contentSecurityPolicy: {
       directives: {
