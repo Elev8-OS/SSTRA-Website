@@ -87,11 +87,16 @@
   <div class="wrap">
     <div class="sec-head">
       <h2 class="display h-l">Regelradar: Was gilt bei dir?</h2>
-      <p class="lead">Die Schweiz kennt kein einheitliches Gesetz. Regeln machen Bund, Kantone und Gemeinden. Wähle einen Kanton und klappe die Gemeinden auf. Jede Aussage ist mit einer Quelle belegt. <span id="standDatum" class="stand"></span></p>
+      <p class="lead">Die Schweiz kennt kein einheitliches Gesetz. Regeln machen Bund, Kantone und Gemeinden. Klicke auf einen Kanton, dann auf eine Gemeinde. Jede Aussage ist mit einer Quelle belegt. <span id="standDatum" class="stand"></span></p>
     </div>
     <div class="rules-grid">
       <div>
-        <div class="tiles" id="tiles" role="group" aria-label="Kantone"></div>
+        <div class="map-wrap">
+          <div class="map-bar"><button class="btn btn-line-dark small" id="mapBack" type="button" hidden>← Ganze Schweiz</button><span class="map-title" id="mapTitle">Schweiz · Kanton anklicken</span>
+            <label class="map-select"><span class="sr-only">Kanton wählen</span><select id="kantonSelect"><option value="">Kanton wählen …</option></select></label></div>
+          <svg id="chMap" viewBox="0 0 1000 650" role="img" aria-label="Karte der Schweiz mit Regeln pro Kanton und Gemeinde"></svg>
+          <div class="map-tip" id="mapTip" hidden></div>
+        </div>
         <div class="legend" aria-hidden="true">
           <span><i style="background:var(--red)"></i>Beschränkung</span>
           <span><i style="background:#000"></i>Registrierung / Bewilligung</span>
@@ -101,6 +106,7 @@
           <span><i style="background:var(--grey);position:relative"><b style="position:absolute;right:1px;bottom:1px;width:5px;height:5px;border-radius:50%;background:var(--red)"></b></i>Gemeinderegeln vorhanden</span>
         </div>
         <div class="bund-box" id="bund" aria-label="Bundesebene"></div>
+        <p class="geo-credit" id="geoCredit"></p>
       </div>
       <div class="rule-panel" id="panel" aria-live="polite"></div>
     </div>
@@ -297,6 +303,7 @@
   </div>
 </footer>
 
+<script src="/js/topojson-client.min.js"></script>
 <script src="/js/site.js" defer></script>
 </body>
 </html>
