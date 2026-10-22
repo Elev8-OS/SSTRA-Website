@@ -1,0 +1,24 @@
+{
+  "stand": "2026-10-23",
+  "video": {
+    "titel": "10vor10: Kurzzeitvermietung in der Schweiz",
+    "sender": "SRF",
+    "sendung": "10vor10",
+    "datum": "2026-10-21",
+    "anzeige": "21. Oktober 2026",
+    "ausschnitt": "15:40 bis 20:56",
+    "text": "Der Beitrag zeigt, wie Städte die Kurzzeitvermietung regulieren, mit Stimmen aus Politik, Eigentümerschaft und Branche, unter anderem unseres Präsidenten Reto Baumgartner.",
+    "quelle": "https://www.srf.ch/play/tv/10-vor-10/video/10-vor-10-vom-21-10-2026?urn=urn:srf:video:e8f3c892-2d79-4358-bb30-ea98db131465",
+    "datei": "/media/srf-10vor10-2026-10-21.mp4",
+    "kurz": "/media/srf-10vor10-2026-10-21-praesident.mp4",
+    "poster": "/media/srf-10vor10-2026-10-21.jpg"
+  },
+  "beitraege": [
+    { "outlet": "SRF 10vor10", "datum": "2026-10-21", "anzeige": "21. Okt. 2026", "titel": "Beitrag zur Kurzzeitvermietung in der Schweiz (Video, Ausschnitt 15:40 bis 20:56)", "url": "https://www.srf.ch/play/tv/10-vor-10/video/10-vor-10-vom-21-10-2026?urn=urn:srf:video:e8f3c892-2d79-4358-bb30-ea98db131465", "art": "TV" },
+    { "outlet": "Hotel Inside", "datum": "2026-10-03", "anzeige": "Okt. 2026", "titel": "Kurzzeitvermietung unter Druck: Was bringt die erste Schweizer STR-Studie der Hospitality-Branche?", "url": "https://hotelinside.ch/kurzzeitvermietung-unter-druck-was-bringt-die-erste-schweizer-str-studie-der-hospitality-branche/", "art": "Fachpresse" },
+    { "outlet": "Tages-Anzeiger", "datum": "2026-09-20", "anzeige": "Sept. 2026", "titel": "Airbnb: Schweizer Vermieter gründen eigenen Verband", "url": "https://www.tagesanzeiger.ch/airbnb-schweizer-vermieter-gruenden-eigenen-verband-975368205378", "art": "Tageszeitung", "bezahlschranke": true },
+    { "outlet": "Hotel Inside", "datum": "2026-09-02", "anzeige": "2. Sept. 2026", "titel": "Host Summit 2026: Olten wird zum Treffpunkt der Schweizer Gastgeberbranche", "url": "https://hotelinside.ch/host-summit-2026-olten-wird-zum-treffpunkt-der-schweizer-gastgeberbranche/", "art": "Fachpresse" }
+  ],
+  "ueber": "Der Schweizer Verband für Kurzzeitvermietung (Swiss Short Term Rental Association, SSTRA) wurde am 19. September 2026 in Olten gegründet. Er vernetzt Gastgeber und Property Manager, setzt Standards und bringt die Sicht der Branche in die Diskussion um die Regeln der Kurzzeitvermietung ein. Präsident ist Reto Baumgartner.",
+  "kontakt": { "name": "Reto Baumgartner", "rolle": "Präsident", "mail": "info@hostsummit.ch" }
+}

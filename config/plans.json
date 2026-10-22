@@ -2,9 +2,10 @@
   "gastgeber": {
     "name": "Gastgeber",
     "role": "mitglied",
-    "amountChf": null,
+    "amountChf": 199,
     "requireApproval": true,
-    "description": "Für Eigentümerinnen und Eigentümer, die selbst vermieten."
+    "description": "Für Eigentümerinnen und Eigentümer, die selbst vermieten. Inklusive 1 Ticket für den jährlichen Host Summit.",
+    "includesTicket": true
   },
   "property-manager": {
     "name": "Property Manager",
