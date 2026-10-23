@@ -120,7 +120,7 @@ a.partner-card:hover{box-shadow:0 8px 24px rgba(0,0,0,.08)}
 .hs-facts-light dd{margin-top:6px;font-weight:600}
 @media (max-width:900px){.hs-facts-light{grid-template-columns:1fr 1fr}}
 @media (max-width:560px){.hs-facts-light{grid-template-columns:1fr}}
-.hs-next{background:#000;color:#fff;border-radius:var(--radius-panel);padding:clamp(28px,4vw,48px)}
+.portal .hs-next{background:#000;color:#fff;border-radius:var(--radius-panel);padding:clamp(28px,4vw,48px)}
 .hs-next h2{font-size:clamp(1.8rem,3.4vw,2.8rem);font-weight:300;letter-spacing:-.02em;margin:8px 0 14px}
 .hs-next p{color:#dcdcdc;max-width:42em}
 .hs-next .cta-row{margin-top:22px}
