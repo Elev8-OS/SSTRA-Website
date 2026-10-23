@@ -157,3 +157,9 @@ a.partner-card:hover{box-shadow:0 8px 24px rgba(0,0,0,.08)}
 .bund-details summary::after{content:'+';font-size:1.6rem;font-weight:300;line-height:1}
 .bund-details[open] summary::after{content:'\2212'}
 .bund-details .bund-box{margin-top:12px}
+
+/* Straffere Abstände */
+main>section:where(:not(.hero)){padding:clamp(56px,7vw,96px) 0}
+.sec-head{margin-bottom:clamp(28px,4vw,48px)}
+.sec-head .lead{margin-top:18px}
+.calm{padding-top:clamp(32px,4vw,56px)}
