@@ -1,0 +1,13 @@
+{
+  "titel": "Kurzzeitvermietung in der Schweiz: Die Schweizer STR-Studie 2026",
+  "quelle": "Marc K. Peter, Reto Baumgartner, Roland Schegg, Nicole Stuber-Berries, Michael Fux: Kurzzeitvermietung in der Schweiz, Die Schweizer STR-Studie 2026, HES-SO Valais-Wallis School of Management, September 2026",
+  "methode": "Online-Umfrage unter 234 Kurzzeitvermieterinnen und -vermietern vom 22. Juni bis 2. September 2026. Die Studie ist nicht repräsentativ, die Bergregionen (Wallis, Bern, Graubünden) sind stark vertreten.",
+  "zahlen": [
+    { "wert": "69 %", "text": "haben ihre Tätigkeit registriert oder lizenziert. 17 % nicht, 14 % sind unsicher.", "seite": "20" },
+    { "wert": "12 %", "text": "deklarieren keine Übernachtungen oder zahlen keine Kurtaxe.", "hinweis": "Kurtaxen gibt es nicht überall. Wer in einer Gemeinde ohne Kurtaxe vermietet, hat nichts zu deklarieren. Die 12 % sind deshalb nicht automatisch ein Regelverstoss.", "seite": "21" },
+    { "wert": "CHF 160", "text": "beträgt der mittlere Preis pro Nacht. Die mittlere Hälfte der Objekte liegt zwischen CHF 115 und CHF 250.", "seite": "16" },
+    { "wert": "57 %", "text": "mittlere Auslastung im Jahr 2025. Die Angaben sind nur eingeschränkt vergleichbar.", "seite": "13 und 16" },
+    { "wert": "20 %", "text": "mittlerer Anteil an Direktbuchungen. Airbnb nutzen 83 %, Booking.com 68 %.", "seite": "29 und 30" },
+    { "wert": "78 %", "text": "können sich einen Verband vorstellen: 42 % ja, 36 % vielleicht.", "seite": "35" }
+  ]
+}

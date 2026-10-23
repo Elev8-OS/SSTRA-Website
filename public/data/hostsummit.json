@@ -1,0 +1,55 @@
+{
+  "veranstalter": "Schweizer Verband für Kurzzeitvermietung (SSTRA)",
+  "ueber": "Der Host Summit ist der jährliche Branchenanlass der Schweizer Kurzzeitvermietung. Er bringt Gastgeber, Property Manager, Technologieanbieter, Dienstleister, Wissenschaft und Politik zusammen, mit Marktdaten, Praxiswissen und Austausch. Organisiert wird er vom Schweizer Verband für Kurzzeitvermietung.",
+  "ausgaben": [
+    {
+      "jahr": 2027,
+      "status": "kommend",
+      "datum": "2027-10-30",
+      "anzeige": "Samstag, 30. Oktober 2027",
+      "ort": null,
+      "teaser": "Ort und Programm folgen. Mitglieder haben ein Ticket inklusive.",
+      "text": "Der zweite Host Summit findet am Samstag, 30. Oktober 2027 statt. Ort und Programm geben wir bekannt, sobald sie feststehen. Wer informiert bleiben will, meldet sich für den Newsletter an.",
+      "ticket": "Die Gastgeber-Mitgliedschaft (CHF 199 pro Jahr) enthält ein Ticket für den jährlichen Host Summit. Einzelheiten zur Einlösung und zum Ticketverkauf folgen mit dem Programm."
+    },
+    {
+      "jahr": 2026,
+      "status": "vorbei",
+      "datum": "2026-09-19",
+      "anzeige": "Samstag, 19. September 2026",
+      "ort": "FHNW Campus Olten, Von Roll-Strasse 10, 4600 Olten",
+      "ortName": "FHNW Campus Olten",
+      "adresse": { "strasse": "Von Roll-Strasse 10", "plz": "4600", "ort": "Olten" },
+      "teilnehmende": "über 200",
+      "teaser": "Rückblick auf den ersten Host Summit in Olten.",
+      "text": "Der erste Host Summit war der erste nationale Branchenanlass für Kurzzeitvermietung in der Schweiz. Er fand an der FHNW in Olten statt und brachte Gastgeber, Property Manager, Technologieanbieter, Dienstleister, Wissenschaft und Politik zusammen.",
+      "highlights": [
+        { "titel": "Gründung des Verbands", "text": "Am 19. September 2026 unterzeichneten die Gründungsmitglieder in Olten die Statuten der Swiss Short Term Rental Association." },
+        { "titel": "Erste Schweizer STR-Studie", "text": "Die HES-SO Valais-Wallis stellte die erste Marktstudie zur Kurzzeitvermietung in der Schweiz vor, mit 234 Teilnehmenden." },
+        { "titel": "Über 200 Teilnehmende", "text": "Gastgeber, Property Manager, Technologieanbieter und Dienstleister aus der Schweiz und dem süddeutschen Raum." }
+      ],
+      "programm": [
+        { "zeit": "08:45", "titel": "Eröffnung", "wer": "Reto Baumgartner, Moderation" },
+        { "zeit": "09:00", "titel": "Grusswort des Stadtpräsidenten", "wer": "Thomas Marbet, Stadtpräsident Olten" },
+        { "zeit": "09:15", "titel": "Der STR-Markt in der Schweiz", "wer": "Jannik Abraham, Managing Director Smoobu" },
+        { "zeit": "10:45", "titel": "Mensch vs. Maschine in der Hospitality", "wer": "Chris Beyeler, Digital Shaper" },
+        { "zeit": "11:15", "titel": "Panel zu Künstlicher Intelligenz", "wer": "Jannik Abraham, Reto Baumgartner, Guesty, Chris Beyeler" },
+        { "zeit": "13:30", "titel": "Gründungsakt der Swiss Short Term Rental Association", "wer": "Vorstandsmitglieder" },
+        { "zeit": "16:15", "titel": "Präsentation der ersten Schweizer STR-Marktstudie 2026", "wer": "Prof. Dr. Marc K. Peter, HES-SO" },
+        { "zeit": "", "titel": "Kurzzeitvermietung in der Schweiz: Wer schreibt die Regeln?", "wer": "Dr. Domenic Brand, Rechtsanwalt" },
+        { "zeit": "18:00", "titel": "Gastgeber-Stammtisch", "wer": "Open end" }
+      ],
+      "referenten": [
+        { "name": "Prof. Dr. Marc K. Peter", "rolle": "Professor of Digital Business, HES-SO", "thema": "Erste Schweizer STR-Marktstudie 2026" },
+        { "name": "Dr. Domenic Brand", "rolle": "Rechtsanwalt", "thema": "Kurzzeitvermietung in der Schweiz: Wer schreibt die Regeln?" },
+        { "name": "Jannik Abraham", "rolle": "Managing Director Smoobu", "thema": "Der STR-Markt in der Schweiz" },
+        { "name": "Chris Beyeler", "rolle": "Digital Shaper", "thema": "Mensch vs. Maschine in der Hospitality" },
+        { "name": "Thomas Marbet", "rolle": "Stadtpräsident Olten", "thema": "Grusswort" },
+        { "name": "Reto Baumgartner", "rolle": "Präsident SSTRA", "thema": "Moderation" }
+      ],
+      "presse": ["host-summit-2026-olten-wird-zum-treffpunkt", "schweizer-vermieter-gruenden-eigenen-verband", "kurzzeitvermietung-unter-druck"],
+      "fotoOrdner": "hostsummit-2026",
+      "fotoCredit": ""
+    }
+  ]
+}
