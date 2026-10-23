@@ -11,11 +11,12 @@ before(() => { server = createApp({ ghl: new MockGhl(), payments: createPayments
 after(() => server.close());
 const get = (p, o = {}) => fetch(base + p, { redirect: 'manual', ...o });
 
-test('Startseite ist serverseitig gerendert: Zahlen, Ticker, Termine, Kennzahlen', async () => {
+test('Startseite ist serverseitig gerendert und schlank (höchstens 9 Abschnitte)', async () => {
   const r = await get('/'); const h = await r.text();
   assert.equal(r.status, 200);
-  for (const s of ['Zahlen, die die Debatte prägen', 'Als Nächstes', 'Zuletzt passiert', 'hero-stats', 'Kantone mit Sonderregeln', 'class="event-tile"', 'Geplant']) assert.ok(h.includes(s), s);
-  assert.ok(!h.includes('<!--') || !/<!--(ZAHLEN|TICKER|EVENTS|HERO_STATS|LOGIN)-->/.test(h), 'Platzhalter ersetzt');
+  for (const s of ['Was sich gerade ändert', 'Alle Entwicklungen und Zahlen', 'radar-facts', 'Kantone mit Sonderregeln', 'Host Summit 2027', 'class="partner-wall"']) assert.ok(h.includes(s), s);
+  assert.ok(!/<!--(RADAR_FACTS|AKTUELL_TEASER|MEDIEN|HOSTSUMMIT|TRIO|LOGIN)-->/.test(h), 'Platzhalter ersetzt');
+  assert.ok((h.match(/<section/g) || []).length <= 9, 'Startseite bleibt schlank');
   assert.ok(!h.includes('%%BASE%%') && !h.includes('Platzhalter'));
   assert.ok(!h.includes('fonts.googleapis.com'));
 });
