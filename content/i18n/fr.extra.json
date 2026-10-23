@@ -1,0 +1,6 @@
+{
+  "client": {
+    "Gemeinde im Kanton {name}": "Commune, canton : {name}",
+    "Kanton {name}": "Canton : {name}"
+  }
+}
