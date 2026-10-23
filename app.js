@@ -13,6 +13,7 @@ import { activateMember, approveApplication, rejectApplication, setRole, payLink
 import { esc, page, mailHtml, ROLE_LABEL } from './lib/views.js';
 import { mountRegions } from './lib/regions.js';
 import { mountAddress } from './lib/address.js';
+import { mountGate } from './lib/gate.js';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const clean = (v, max = 200) => String(v ?? '').trim().slice(0, max);
@@ -45,6 +46,7 @@ export function createApp({ ghl, payments, geoFetch }) {
 
   app.get('/health', (_req, res) => res.json({ ok: true }));
   app.use(canonicalHost);
+  mountGate(app); // Baustellen-Sperre, nur aktiv wenn SITE_PASSWORD gesetzt ist
 
   // ---- Stripe-Webhook (Rohdaten, vor express.json) ----
   app.post('/api/stripe/webhook', express.raw({ type: 'application/json' }), async (req, res) => {
