@@ -60,7 +60,8 @@
 
 /* Partner */
 .partner-wall a{color:inherit;text-decoration:none}
-.partner-wall .has-logo img{display:block;max-height:34px;max-width:140px;width:auto}
+.partner-wall .has-logo a{display:inline-flex;align-items:center;gap:10px}
+.partner-wall .has-logo img{display:block;max-height:28px;max-width:90px;width:auto}
 .partner-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 @media (max-width:900px){.partner-cards{grid-template-columns:1fr}}
 .partner-card{display:flex;flex-direction:column;gap:10px;background:var(--grey);border-radius:var(--radius-panel);padding:26px;text-decoration:none;color:inherit}
