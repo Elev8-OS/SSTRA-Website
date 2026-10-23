@@ -30,11 +30,11 @@
     <nav class="main" id="nav" aria-label="Hauptnavigation">
       <ul>
         <li><a href="#regeln">Regelradar</a></li>
-        <li><a href="#aktuell">Aktuell</a></li>
+        <li><a href="/aktuell">Aktuell</a></li>
         <li><a href="/medien">Medien</a></li>
         <li><a href="/regionen">Regionen</a></li>
         <li><a href="/hostsummit">Host Summit</a></li>
-        <li><a href="#mitglied">Mitgliedschaft</a></li>
+        <li><a href="/verband">Verband</a></li>
         <li class="menu-extra"><!--LOGIN--><a class="btn btn-red" href="/mitglied-werden.html">Mitglied werden</a></li>
       </ul>
     </nav>
@@ -63,12 +63,6 @@
       <p class="addr-msg" id="addrMsg" role="status"></p>
       <p class="addr-chips">Häufig gefragt: <a href="#regeln/ZH">Zürich</a><a href="#regeln/LU">Luzern</a><a href="#regeln/BE/581">Interlaken</a><a href="#regeln/GE">Genf</a><a href="#regeln/BS">Basel</a><a href="#regeln/TI">Tessin</a></p>
     </form>
-
-    <div class="cta-row">
-      <a class="btn btn-line" href="/mitglied-werden.html">Mitglied werden</a>
-      <a class="btn btn-line" href="/regeln">Alle Kantone im Überblick</a>
-    </div>
-    <!--HERO_STATS-->
   </div>
 </section>
 
@@ -107,151 +101,39 @@
       </div>
       <div class="rule-panel" id="panel" aria-live="polite"></div>
     </div>
-    <div class="bund-box" id="bund" aria-label="Bundesebene"></div>
+    <details class="bund-details"><summary>Was in der ganzen Schweiz gilt</summary><div class="bund-box" id="bund" aria-label="Bundesebene"></div></details>
+    <!--RADAR_FACTS-->
   </div>
 </section>
 
-<!--ZAHLEN-->
-
 <!-- ============ AKTUELL ============ -->
-<section id="aktuell" class="on-light">
+<section id="aktuell" class="soft">
   <div class="wrap">
     <div class="sec-head">
       <h2 class="display h-l">Was sich gerade ändert</h2>
-      <p class="lead">Gerichtsurteile, Abstimmungen und neue Regeln, die Gastgeber betreffen. Jeder Eintrag verweist auf die Quelle und auf die betroffene Regel.</p>
+      <p class="lead">Gerichtsurteile, Abstimmungen und neue Regeln, mit Quelle.</p>
     </div>
-    <!--TICKER-->
+    <!--AKTUELL_TEASER-->
+    <div class="cta-row"><a class="btn btn-black" href="/aktuell">Alle Entwicklungen und Zahlen</a></div>
+  </div>
+</section>
+
+<!--HOSTSUMMIT-->
+
+<!-- ============ VERBAND ============ -->
+<section id="verband" class="on-light">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="display h-l">Der Verband</h2>
+      <p class="lead">Je mehr Gastgeber wir sind, desto mehr Gewicht hat unsere Stimme.</p>
+    </div>
+    <!--TRIO-->
+    <div class="cta-row"><a class="btn btn-black" href="/mitglied-werden.html">Mitglied werden</a><a class="btn btn-line-dark" href="/verband">Mehr über den Verband</a></div>
+    <p class="vote-note">Gastgeber: CHF 199 pro Jahr, inklusive 1 Ticket für den Host Summit.</p>
   </div>
 </section>
 
 <!--MEDIEN-->
-
-<!--HOSTSUMMIT-->
-
-<!-- ============ MISSION ============ -->
-<section class="mission" id="verband">
-  <div class="wrap">
-    <h2 class="display h-l">Drei Aufgaben.<br>Eine gemeinsame Stimme.</h2>
-    <div class="pillars">
-      <div class="pillar">
-        <h3>Vernetzen</h3>
-        <p>Gastgeberinnen, Gastgeber und Property Manager aus allen Regionen tauschen sich aus, an Anlässen, in Regionalgruppen und online.</p>
-      </div>
-      <div class="pillar">
-        <h3>Professionalisieren</h3>
-        <p>Ein gemeinsamer Verhaltenskodex, praxisnahes Wissen zu Steuern, Kurtaxe und Recht und später ein Gütesiegel für Gastgeber.</p>
-      </div>
-      <div class="pillar">
-        <h3>Mitreden</h3>
-        <p>Wir sprechen mit Gemeinden, Kantonen und Bund, mit Zahlen statt Behauptungen und mit Lösungsvorschlägen statt nur Kritik.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ STAMMTISCHE ============ -->
-<section class="stammtische on-light" id="stammtische">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 class="display h-l">Stammtische in deiner Region</h2>
-      <p class="lead">Elf Regionen, von Genf bis Graubünden. Die Gruppen sind im Aufbau, die ersten Stammtische sind geplant. Wer sich meldet, erfährt als Erste oder Erster, wann und wo.</p>
-    </div>
-    <div class="events-home" id="eventsHome"><!--EVENTS--></div>
-    <div class="cta-row"><a class="btn btn-black" href="/regionen">Alle Regionen</a><a class="btn btn-line-dark" href="/mitglied-werden.html?plan=regionalgruppe">Gruppe mit aufbauen</a></div>
-  </div>
-</section>
-
-<!-- ============ STANDARDS ============ -->
-<section class="standards on-light" id="standards">
-  <div class="wrap std-grid">
-    <div>
-      <h2 class="display h-l">Standards, auf die man sich verlassen kann.</h2>
-      <p class="lead" style="margin-top:28px">Wer Mitglied ist, verpflichtet sich auf unseren Verhaltenskodex. Er zeigt: Professionelle Kurzzeitvermietung nimmt Verantwortung wahr.</p>
-      <div class="seal">
-        <svg viewBox="0 0 40 46" aria-hidden="true"><path d="M20 2 3 8v16c0 10 7 17 17 20 10-3 17-10 17-20V8L20 2Z" fill="none" stroke="#fff" stroke-width="2.5"/><path d="M13 23l5 5 10-11" fill="none" stroke="#C0100D" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <div>
-          <h3>Swiss Verified Host</h3>
-          <p>Das Gütesiegel für Gastgeber, die den Kodex erfüllen und das von unabhängiger Stelle geprüft bekommen. In Planung.</p>
-        </div>
-      </div>
-    </div>
-    <ul class="checks">
-      <li><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="13" fill="none" stroke="#000" stroke-width="2"/><path d="M8 14.5l4 4 8-9" fill="none" stroke="#C0100D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong>Sicherheit zuerst</strong><span>Brandschutz, Notfallinformationen und Haftpflicht sind geregelt.</span></div></li>
-      <li><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="13" fill="none" stroke="#000" stroke-width="2"/><path d="M8 14.5l4 4 8-9" fill="none" stroke="#C0100D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong>Steuern und Abgaben stimmen</strong><span>Kurtaxe, Einkommens- und Mehrwertsteuer werden korrekt abgerechnet.</span></div></li>
-      <li><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="13" fill="none" stroke="#000" stroke-width="2"/><path d="M8 14.5l4 4 8-9" fill="none" stroke="#C0100D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong>Gute Nachbarschaft</strong><span>Hausregeln, Lärmschutz und eine Ansprechperson vor Ort.</span></div></li>
-      <li><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="13" fill="none" stroke="#000" stroke-width="2"/><path d="M8 14.5l4 4 8-9" fill="none" stroke="#C0100D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong>Transparente Gästekommunikation</strong><span>Klare Preise, faire Stornobedingungen und erreichbare Kontaktdaten.</span></div></li>
-      <li><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="13" fill="none" stroke="#000" stroke-width="2"/><path d="M8 14.5l4 4 8-9" fill="none" stroke="#C0100D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong>Datenschutz</strong><span>Gästedaten werden nach dem Schweizer Datenschutzgesetz behandelt.</span></div></li>
-      <li><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="13" fill="none" stroke="#000" stroke-width="2"/><path d="M8 14.5l4 4 8-9" fill="none" stroke="#C0100D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong>Dialog statt Konfrontation</strong><span>Wir suchen das Gespräch mit Gemeinden, Hotellerie und Wohnschutz-Organisationen.</span></div></li>
-    </ul>
-  </div>
-</section>
-
-<!-- ============ MITGLIEDSCHAFT ============ -->
-<section id="mitglied" class="on-light">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 class="display h-l">Mitglied werden</h2>
-      <p class="lead">Je mehr Gastgeber wir sind, desto mehr Gewicht hat unsere Stimme. Wähle die Mitgliedschaft, die zu dir passt.</p>
-    </div>
-    <ol class="steps" aria-label="So läuft der Beitritt ab">
-      <li><strong>Antrag senden</strong>Dauert zwei Minuten, ohne Zahlung.</li>
-      <li><strong>Vorstand prüft</strong>Du hörst in der Regel innert weniger Tage von uns.</li>
-      <li><strong>Beitrag und Zugang</strong>Du erfährst den Beitrag, bevor du etwas zahlst. Danach öffnet sich der Mitgliederbereich.</li>
-    </ol>
-    <div class="plans">
-      <article class="plan">
-        <h3>Gastgeber</h3>
-        <p class="who">Für Eigentümerinnen und Eigentümer, die selbst vermieten.</p>
-        <ul><li>Stimmrecht an der Mitgliederversammlung</li><li>Wissens-Hub und Checklisten</li><li>Zugang zur Community</li><li>1 Ticket für den jährlichen Host Summit</li></ul>
-        <p class="price">CHF 199 <small>/ Jahr</small></p>
-        <a class="btn btn-black" href="/mitglied-werden.html?plan=gastgeber">Antrag stellen</a>
-      </article>
-      <article class="plan feature">
-        <span class="tag">Für Profis</span>
-        <h3>Property Manager</h3>
-        <p class="who">Für Unternehmen, die Objekte für andere betreiben.</p>
-        <ul><li>Stimmrecht an der Mitgliederversammlung</li><li>Kodex und Gütesiegel</li><li>Austausch unter Betreibern</li></ul>
-        <p class="price price-note">Beitrag folgt<small>Nach Anzahl Objekte, du erfährst ihn vor der Zahlung.</small></p>
-        <a class="btn btn-white" href="/mitglied-werden.html?plan=property-manager">Antrag stellen</a>
-      </article>
-      <article class="plan">
-        <h3>Regionalgruppe</h3>
-        <p class="who">Für Gastgeber-Zusammenschlüsse in Kanton oder Gemeinde.</p>
-        <ul><li>Lokale Vertretung gegenüber Gemeinden</li><li>Toolkit für Gespräche mit Behörden</li><li>Eigene Seite im Verband</li></ul>
-        <p class="price price-note">Beitrag folgt<small>Du erfährst ihn vor der Zahlung.</small></p>
-        <a class="btn btn-black" href="/mitglied-werden.html?plan=regionalgruppe">Anfrage senden</a>
-      </article>
-      <article class="plan">
-        <h3>Fördermitglied</h3>
-        <p class="who">Für Technologie-, Service- und Plattformpartner.</p>
-        <ul><li>Sichtbarkeit bei Anlässen und online</li><li>Austausch mit dem Vorstand</li><li>Kein Stimmrecht</li></ul>
-        <p class="price price-note">Beitrag folgt<small>Du erfährst ihn vor der Zahlung.</small></p>
-        <a class="btn btn-black" href="/mitglied-werden.html?plan=foerdermitglied">Anfrage senden</a>
-      </article>
-    </div>
-    <p class="vote-note">Stimmrecht haben ausschliesslich Gastgeber und Property Manager. So bleibt der Verband unabhängig, auch von seinen Partnern.</p>
-  </div>
-</section>
-
-<!-- ============ STUDIE ============ -->
-<section class="study" id="studie">
-  <div class="wrap study-grid">
-    <div>
-      <h2 class="display h-l">Die erste Schweizer STR-Studie.</h2>
-      <p class="lead">Erstmals gibt es Marktdaten zur Kurzzeitvermietung in der Schweiz. Die Studie der HES-SO Valais-Wallis wurde am Host Summit 2026 in Olten vorgestellt und liefert Daten, mit denen Gemeinden, Medien und Politik arbeiten können.</p>
-      <div class="cta-row"><a class="btn btn-red" href="mailto:info@hostsummit.ch?subject=Schweizer%20STR-Studie%202026">Studie anfordern</a><a class="btn btn-line" href="/medien">Berichte dazu</a></div>
-    </div>
-    <aside class="study-card" aria-label="Eckdaten Studie">
-      <dl>
-        <div><dt>Titel</dt><dd>Kurzzeitvermietung in der Schweiz: Die Schweizer STR-Studie 2026</dd></div>
-        <div><dt>Autorinnen und Autoren</dt><dd>Marc K. Peter, Reto Baumgartner, Roland Schegg, Nicole Stuber-Berries, Michael Fux</dd></div>
-        <div><dt>Herausgeber</dt><dd>HES-SO Valais-Wallis School of Management, September 2026</dd></div>
-      </dl>
-    </aside>
-  </div>
-</section>
-
-<!--STUDIE_ZAHLEN-->
 
 <!-- ============ PARTNER ============ -->
 <section class="partners on-light">
@@ -270,11 +152,10 @@
 <section class="final" id="kontakt">
   <div class="wrap final-grid">
     <div>
-      <h2 class="display h-l">Sei dabei, wenn die Regeln entstehen.</h2>
-      <div class="cta-row"><a class="btn btn-white" href="/mitglied-werden.html">Mitglied werden</a><a class="btn btn-line" href="mailto:info@hostsummit.ch">Kontakt aufnehmen</a></div>
+      <h2 class="display h-l">Neue Regeln und Termine, direkt in dein Postfach.</h2>
     </div>
     <form class="news-form" id="newsletter" novalidate>
-      <label for="email">Newsletter: neue Regeln und Termine für Gastgeber</label>
+      <label for="email">Newsletter für Gastgeber</label>
       <div class="row">
         <input id="email" name="email" type="email" placeholder="deine@email.ch" autocomplete="email" required>
         <button class="btn btn-black" type="submit">Anmelden</button>
@@ -296,8 +177,8 @@
         <a class="logo" href="/"><svg viewBox="0 0 40 46" aria-hidden="true"><path d="M20 2 3 8v16c0 10 7 17 17 20 10-3 17-10 17-20V8L20 2Z" fill="none" stroke="#fff" stroke-width="3"/><path d="M12 24l8-7 8 7v8H12v-8Z" fill="#fff"/><rect x="18" y="26" width="4" height="6" fill="#000"/></svg><span>Swiss Short<br>Term Rental</span></a>
         <p style="margin-top:18px;color:#a8a8a8;font-size:1rem">Schweizer Verband für Kurzzeitvermietung</p>
       </div>
-      <div><h4>Wissen</h4><ul><li><a href="#regeln">Regelradar</a></li><li><a href="/regeln">Alle Kantone</a></li><li><a href="/regionen">Regionalgruppen</a></li><li><a href="#aktuell">Aktuell</a></li><li><a href="/medien">Medien</a></li><li><a href="/hostsummit">Host Summit</a></li><li><a href="#studie">Marktstudie</a></li></ul></div>
-      <div><h4>Verband</h4><ul><li><a href="#verband">Aufgaben</a></li><li><a href="#standards">Standards</a></li><li><a href="#mitglied">Mitgliedschaft</a></li></ul></div>
+      <div><h4>Wissen</h4><ul><li><a href="#regeln">Regelradar</a></li><li><a href="/regeln">Alle Kantone</a></li><li><a href="/regionen">Regionalgruppen</a></li><li><a href="/aktuell">Aktuell</a></li><li><a href="/medien">Medien</a></li><li><a href="/hostsummit">Host Summit</a></li><li><a href="/studie">Schweizer STR-Studie</a></li></ul></div>
+      <div><h4>Verband</h4><ul><li><a href="/verband">Aufgaben und Standards</a></li><li><a href="/partner">Partner</a></li><li><a href="/verband#mitglied">Mitgliedschaft</a></li><li><a href="/mitglied-werden.html">Mitglied werden</a></li></ul></div>
       <div><h4>Kontakt</h4><ul><li><a href="mailto:info@hostsummit.ch">info@hostsummit.ch</a></li><li><a href="https://www.linkedin.com/company/sstra" rel="me noopener" target="_blank">LinkedIn</a></li><li><a href="/login.html">Mitglieder-Login</a></li><li><a href="/impressum.html">Impressum</a></li><li><a href="/datenschutz.html">Datenschutz</a></li></ul></div>
     </div>
     <div class="foot-base"><span>© 2026 Schweizer Verband für Kurzzeitvermietung · Medienpartner: Hotelinside</span><span><a href="/data/regeln.json">Regelradar als offene Daten (JSON)</a></span></div>
