@@ -128,3 +128,32 @@ a.partner-card:hover{box-shadow:0 8px 24px rgba(0,0,0,.08)}
 .hs-prog .t{width:80px;font-weight:600;white-space:nowrap}
 .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
 .gallery img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--radius-panel);display:block}
+
+/* Ruhigere Startseite und ausgelagerte Seiten */
+.soft{background:var(--grey)}
+.soft .ticker-list li{background:transparent}
+.radar-facts{display:flex;flex-wrap:wrap;gap:6px 24px;align-items:center;margin-top:32px;padding-top:20px;border-top:1px solid var(--grey-mid);font-size:.95rem;color:var(--grey-text)}
+.radar-facts a{margin-left:auto;color:#000;font-weight:600;text-underline-offset:3px}
+.hs-teaser .hs-grid{display:block}
+.hs-teaser .hs-grid>div{max-width:46em}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,4vw,56px);margin-bottom:40px}
+.trio h3{font-size:clamp(1.5rem,2.4vw,2rem);font-weight:300;letter-spacing:-.02em;margin-bottom:12px}
+.trio p{color:#333;max-width:22em}
+@media (max-width:800px){.trio{grid-template-columns:1fr;gap:28px}}
+.media-strip{background:var(--grey);padding:36px 0}
+.media-strip-row{display:flex;flex-wrap:wrap;gap:16px 40px;align-items:center}
+.media-strip .eyebrow{color:var(--grey-text);margin:0}
+.media-strip ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px 32px;font-weight:600;font-size:1.1rem}
+.media-strip .btn{margin-left:auto}
+.page-top{padding-bottom:0}
+.page-top .eyebrow{color:var(--grey-text)}
+.page-top h1{margin-top:12px}
+.page-top .lead{margin-top:24px;color:#333}
+.calm{padding-top:clamp(40px,5vw,72px)}
+
+.bund-details{margin-top:32px;border-top:1px solid var(--grey-mid);padding-top:8px}
+.bund-details summary{cursor:pointer;font-weight:600;padding:14px 0;list-style:none;display:flex;justify-content:space-between;align-items:center}
+.bund-details summary::-webkit-details-marker{display:none}
+.bund-details summary::after{content:'+';font-size:1.6rem;font-weight:300;line-height:1}
+.bund-details[open] summary::after{content:'\2212'}
+.bund-details .bund-box{margin-top:12px}

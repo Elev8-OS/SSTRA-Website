@@ -34,10 +34,12 @@ test('Fotogalerie liest Bilder aus public/media/hostsummit-2026', async () => {
   } finally { fs.rmSync(existed ? path.join(dir, 'test-foto.png') : dir, { recursive: true, force: true }); if (existed) fs.rmSync(path.join(dir, 'captions.json'), { force: true }); }
 });
 
-test('Startseite: Host-Summit-Teaser, Studien-Zahlen mit Kurtaxe-Hinweis, Navigation', async () => {
+test('Startseite: Host-Summit-Teaser; Studien-Zahlen mit Kurtaxe-Hinweis auf /studie', async () => {
   const [, h] = await get('/');
   assert.ok(h.includes('Host Summit 2027') && h.includes('Rückblick 2026') && h.includes('href="/hostsummit"'));
-  for (const s of ['Was die Studie zeigt', '69 %', '12 %', 'CHF 160', '78 %', 'nicht automatisch ein Regelverstoss', 'nicht repräsentativ', 'Studie, S. 21']) assert.ok(h.includes(s), s);
+  assert.ok(!h.includes('Was die Studie zeigt'), 'Studien-Zahlen gehören auf /studie');
+  const [, st] = await get('/studie');
+  for (const s of ['Was die Studie zeigt', '69 %', '12 %', 'CHF 160', '78 %', 'nicht automatisch ein Regelverstoss', 'nicht repräsentativ', 'Studie, S. 21', '<h1']) assert.ok(st.includes(s), s);
 });
 
 test('Sitemap, llms.txt und llms-full kennen Host Summit und Studie', async () => {
