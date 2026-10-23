@@ -91,3 +91,20 @@ test('Browser-Skript: T() übersetzt, ersetzt Platzhalter und fällt auf Deutsch
   assert.equal(win.T('Kanton {name}', { name: win.T('Wallis') }), 'Canton : Valais');
   const [, de] = await txt('/js/i18n.js?l=xx'); assert.ok(!de.includes('Genève'), 'unbekannte Sprache liefert Deutsch');
 });
+
+test('Weitere übersetzte Seiten: Host Summit, Medien, Regionen, Partner', async () => {
+  const [, h] = await txt('/en/hostsummit/2027'); assert.ok(h.includes('Saturday, 30 October 2027') && h.includes('To be announced') && h.includes('Become a partner'));
+  const [, r] = await txt('/fr/hostsummit/2026'); assert.ok(r.includes('Photos') && r.includes('Programme selon l\'annonce') && r.includes('Le premier Host Summit'));
+  const [, m] = await txt('/fr/medien'); assert.ok(m.includes('Médias et presse') && m.includes('Comment nous citer') && m.includes('Source : Radar des règles'));
+  const [, g] = await txt('/it/regionen'); assert.ok(g.includes('Svizzera centrale') && g.includes('Oberland bernese'));
+  const [, p] = await txt('/en/partner'); assert.ok(p.includes('Partners') && p.includes('The partner profiles are currently being built.'));
+  const [, l] = await txt('/fr/impressum.html'); assert.ok(l.includes('class="lang-note"') && l.includes('Hauptgasse 33'), 'Rechtstexte bleiben deutsch, mit Hinweis');
+});
+
+test('Sitemap: übersetzte Seiten je Sprache mit hreflang-Alternativen, deutsche Seiten einmal', async () => {
+  const [, s] = await txt('/sitemap.xml');
+  assert.ok(s.includes('xmlns:xhtml="http://www.w3.org/1999/xhtml"'));
+  for (const u of ['/fr/', '/it/verband', '/en/aktuell', '/fr/medien', '/en/hostsummit/2027']) assert.ok(s.includes(`${u}</loc>`), u);
+  assert.ok(s.includes('hreflang="x-default"') && s.includes('hreflang="it" href='));
+  assert.ok(!s.includes('/fr/regeln/') && s.includes('/regeln/bern</loc>'), 'nur deutsche Seiten ohne Sprachversionen');
+});
