@@ -3,6 +3,7 @@
   var svg=document.getElementById('chMap'),panel=document.getElementById('panel'),bund=document.getElementById('bund');
   if(!svg||!panel||!window.topojson)return;
   var names={SH:'Schaffhausen',TG:'Thurgau',BS:'Basel-Stadt',AG:'Aargau',ZH:'Zürich',SG:'St. Gallen',AR:'Appenzell Ausserrhoden',JU:'Jura',BL:'Basel-Landschaft',SO:'Solothurn',ZG:'Zug',SZ:'Schwyz',AI:'Appenzell Innerrhoden',NE:'Neuenburg',BE:'Bern',LU:'Luzern',NW:'Nidwalden',UR:'Uri',GL:'Glarus',GR:'Graubünden',GE:'Genf',VD:'Waadt',FR:'Freiburg',OW:'Obwalden',VS:'Wallis',TI:'Tessin'};
+  var T=window.T||function(s,v){return v?s.replace(/\{(\w+)\}/g,function(m,k){return v[k]!=null?v[k]:m;}):s;};
   var esc=function(s){return String(s).replace(/[&<>\"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;'}[c];});};
   var fmt=function(d){return d.split('-').reverse().join('.');};
   /* gleiche Schreibweise wie auf dem Server (lib/data.js) */
@@ -14,34 +15,38 @@
   var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
   var narrow=function(){return matchMedia('(max-width:900px)').matches;};
 
-  function li(items){return '<ul>'+items.map(function(i){return '<li>'+esc(i.t)+(i.q?' <a class=\"src\" href=\"'+esc(i.q)+'\" target=\"_blank\" rel=\"noopener\">Quelle</a>':'')+'</li>';}).join('')+'</ul>';}
+  var nm=function(k){return T(names[k]);},ty=function(t){return T(DATA.typen[t]);};
+  var onlyDe=function(){return window.LANG&&window.LANG!=='de'?'<p class=\"muted\">'+esc(T('Die Regeltexte sind derzeit nur auf Deutsch verfügbar.'))+'</p>':'';};
+  function li(items){return '<ul>'+items.map(function(i){return '<li>'+esc(i.t)+(i.q?' <a class=\"src\" href=\"'+esc(i.q)+'\" target=\"_blank\" rel=\"noopener\">'+esc(T('Quelle'))+'</a>':'')+'</li>';}).join('')+'</ul>';}
   function gemFor(k,bfs){var kk=DATA.kantone[k];if(!kk)return null;return kk.gemeinden.filter(function(g){return (g.bfs||[]).indexOf(bfs)>=0;})[0]||null;}
 
   function renderStart(){
-    panel.innerHTML='<h3>Wähle deinen Kanton</h3><p class=\"lead-sm\">Klicke in der Karte auf einen Kanton oder gib oben deine Adresse ein.</p>'
-      +'<p class=\"note\">'+esc(DATA.hinweis)+'</p>';
+    panel.innerHTML='<h3>'+esc(T('Wähle deinen Kanton'))+'</h3><p class="lead-sm">'+esc(T('Klicke in der Karte auf einen Kanton oder gib oben deine Adresse ein.'))+'</p>'
+      +'<p class="note">'+esc(T(DATA.hinweis))+'</p>';
   }
 
   function renderPanel(k,bfs){
     var kk=DATA.kantone[k]||{typ:'none',kantonal:[],gemeinden:[]};
     var html='',g=null,pageUrl='/regeln/'+slug(names[k]);
+    var mail=function(subj){return '<a href="mailto:info@hostsummit.ch?subject='+encodeURIComponent(subj)+'">'+esc(T('Melde sie uns.'))+'</a>';};
     if(bfs){
       var m=muniByBfs[bfs];g=gemFor(k,bfs);
-      html+='<h3>'+esc(m?m.n:'Gemeinde')+'</h3><p class=\"sub\">Gemeinde im Kanton '+esc(names[k])+'</p>';
-      if(g){html+='<span class=\"badge '+g.typ+'\">'+esc(DATA.typen[g.typ])+'</span><h4>Gemeinderegel</h4>'+li(g.items);}
-      else{html+='<span class=\"badge none\">Keine Gemeinderegel bekannt</span><p>Für diese Gemeinde ist uns keine eigene Regel bekannt. Es gelten die kantonalen Vorgaben und die allgemeinen Pflichten. Kennst du eine lokale Regel? <a href=\"mailto:info@hostsummit.ch?subject='+encodeURIComponent('Regelradar '+(m?m.n:'')+' ('+k+')')+'\">Melde sie uns.</a></p>';}
-      html+='<h4>Kanton '+esc(names[k])+'</h4>'+(kk.kantonal.length?li(kk.kantonal):'<p>Keine kantonale Sonderregel bekannt.</p>');
+      html+='<h3>'+esc(m?m.n:T('Gemeinde'))+'</h3><p class="sub">'+esc(T('Gemeinde im Kanton {name}',{name:nm(k)}))+'</p>';
+      if(g){html+='<span class="badge '+g.typ+'">'+esc(ty(g.typ))+'</span><h4>'+esc(T('Gemeinderegel'))+'</h4>'+li(g.items);}
+      else{html+='<span class="badge none">'+esc(T('Keine Gemeinderegel bekannt'))+'</span><p>'+esc(T('Für diese Gemeinde ist uns keine eigene Regel bekannt. Es gelten die kantonalen Vorgaben und die allgemeinen Pflichten. Kennst du eine lokale Regel?'))+' '+mail('Regelradar '+(m?m.n:'')+' ('+k+')')+'</p>';}
+      html+='<h4>'+esc(T('Kanton {name}',{name:nm(k)}))+'</h4>'+(kk.kantonal.length?li(kk.kantonal):'<p>'+esc(T('Keine kantonale Sonderregel bekannt.'))+'</p>');
     }else{
-      html+='<h3>'+esc(names[k])+'</h3><span class=\"badge '+kk.typ+'\">'+esc(DATA.typen[kk.typ])+'</span><h4>Kanton</h4>';
-      html+=kk.kantonal.length?li(kk.kantonal):'<p>Keine kantonale Sonderregel bekannt. Es gelten die allgemeinen Pflichten (Steuern, Gästemeldung, Kurtaxe der Gemeinde). Kennst du eine lokale Regel? <a href=\"mailto:info@hostsummit.ch?subject='+encodeURIComponent('Regelradar Kanton '+names[k])+'\">Melde sie uns.</a></p>';
-      if(kk.gemeinden.length){html+='<h4>Gemeinden mit eigenen Regeln</h4>'+kk.gemeinden.map(function(x){return '<details class=\"gem\"><summary><span class=\"dot '+x.typ+'\"></span>'+esc(x.name)+'<small>'+esc(DATA.typen[x.typ])+'</small></summary>'+li(x.items)+'</details>';}).join('');}
-      else html+='<p class=\"muted\">Keine Gemeinderegeln erfasst. Wähle oben eine Gemeinde, um die Details zu sehen.</p>';
+      html+='<h3>'+esc(nm(k))+'</h3><span class="badge '+kk.typ+'">'+esc(ty(kk.typ))+'</span><h4>'+esc(T('Kanton'))+'</h4>';
+      html+=kk.kantonal.length?li(kk.kantonal):'<p>'+esc(T('Keine kantonale Sonderregel bekannt. Es gelten die allgemeinen Pflichten (Steuern, Gästemeldung, Kurtaxe der Gemeinde). Kennst du eine lokale Regel?'))+' '+mail('Regelradar Kanton '+names[k])+'</p>';
+      if(kk.gemeinden.length){html+='<h4>'+esc(T('Gemeinden mit eigenen Regeln'))+'</h4>'+kk.gemeinden.map(function(x){return '<details class="gem"><summary><span class="dot '+x.typ+'"></span>'+esc(x.name)+'<small>'+esc(ty(x.typ))+'</small></summary>'+li(x.items)+'</details>';}).join('');}
+      else html+='<p class="muted">'+esc(T('Keine Gemeinderegeln erfasst. Wähle oben eine Gemeinde, um die Details zu sehen.'))+'</p>';
     }
     var full=location.origin+pageUrl+(g?'#'+slug(g.name):'');
-    html+='<p class=\"share\"><a href=\"'+esc(pageUrl+(g?'#'+slug(g.name):''))+'\">Seite mit allen Quellen</a><a href=\"'+esc(full)+'\" data-copy=\"'+esc(full)+'\">Link kopieren</a></p>';
-    html+='<p class=\"note\">Stand '+fmt(DATA.stand)+'. '+esc(DATA.hinweis)+'</p>';
+    html+=onlyDe();
+    html+='<p class="share"><a href="'+esc(pageUrl+(g?'#'+slug(g.name):''))+'">'+esc(T('Seite mit allen Quellen'))+'</a><a href="'+esc(full)+'" data-copy="'+esc(full)+'">'+esc(T('Link kopieren'))+'</a></p>';
+    html+='<p class="note">'+esc(T('Stand {date}.',{date:fmt(DATA.stand)}))+' '+esc(T(DATA.hinweis))+'</p>';
     panel.innerHTML=html;
-    var cp=panel.querySelector('[data-copy]');if(cp)cp.addEventListener('click',function(e){e.preventDefault();navigator.clipboard&&navigator.clipboard.writeText(this.dataset.copy);this.textContent='Link kopiert';});
+    var cp=panel.querySelector('[data-copy]');if(cp)cp.addEventListener('click',function(e){e.preventDefault();navigator.clipboard&&navigator.clipboard.writeText(this.dataset.copy);this.textContent=T('Link kopiert');});
   }
 
   /* Projektion: Platte Karte mit Breitengradkorrektur, reicht für die Schweiz */
@@ -78,9 +83,9 @@
     var list=Object.keys(muniByBfs).filter(function(b){return muniByBfs[b].k===k;}).map(function(b){return {b:+b,n:muniByBfs[b].n};}).sort(function(a,b){return a.n.localeCompare(b.n,'de');});
     var withRule=[],rest=[];list.forEach(function(x){(gemFor(k,x.b)?withRule:rest).push(x);});
     var opt=function(x,mark){return '<option value=\"'+x.b+'\">'+(mark?'● ':'')+esc(x.n)+'</option>';};
-    gemSel.innerHTML='<option value=\"\">Gemeinde wählen …</option>'
-      +(withRule.length?'<optgroup label=\"Mit eigener Regel\">'+withRule.map(function(x){return opt(x,true);}).join('')+'</optgroup>':'')
-      +'<optgroup label=\"Alle Gemeinden ('+rest.length+')\">'+rest.map(function(x){return opt(x,false);}).join('')+'</optgroup>';
+    gemSel.innerHTML='<option value=\"\">'+esc(T('Gemeinde wählen …'))+'</option>'
+      +(withRule.length?'<optgroup label=\"'+esc(T('Mit eigener Regel'))+'\">'+withRule.map(function(x){return opt(x,true);}).join('')+'</optgroup>':'')
+      +'<optgroup label=\"'+esc(T('Alle Gemeinden ({n})',{n:rest.length}))+'\">'+rest.map(function(x){return opt(x,false);}).join('')+'</optgroup>';
   }
 
   function scrollTo(kind){
@@ -98,10 +103,10 @@
     svg.querySelectorAll('.muni').forEach(function(p){p.classList.toggle('show',p.dataset.k===k);p.classList.toggle('active',String(p.dataset.bfs)===String(bfs));});
     if(k){
       setView(cantonBox[k],opts.instant);back.hidden=false;
-      title.textContent=names[k]+(bfs&&muniByBfs[bfs]?' · '+muniByBfs[bfs].n:' · Gemeinde wählen');
+      title.textContent=nm(k)+' · '+(bfs&&muniByBfs[bfs]?muniByBfs[bfs].n:T('Gemeinde wählen'));
       renderPanel(k,bfs);sel.value=k;fillGem(k);gemWrap.hidden=false;gemSel.value=bfs?String(bfs):'';
     }else{
-      setView([0,0,W,H],opts.instant);back.hidden=true;title.textContent='Schweiz · Kanton anklicken';
+      setView([0,0,W,H],opts.instant);back.hidden=true;title.textContent=T('Schweiz · Kanton anklicken');
       sel.value='';gemWrap.hidden=true;renderStart();
     }
     if(!opts.noHash)history.replaceState(null,'','#regeln'+(k?'/'+k+(bfs?'/'+bfs:''):''));
@@ -117,14 +122,14 @@
     munis.forEach(function(f){var k=f.properties.k,bfs=f.id;muniByBfs[bfs]=f.properties;var g=gemFor(k,bfs);
       var p=el('path',{d:pathOf(f.geometry),'class':'muni'+(g?' has-rule t-'+g.typ:''),'data-k':k,'data-bfs':bfs});
       p.addEventListener('click',function(ev){ev.stopPropagation();selectCanton(k,bfs,{scroll:narrow()?'grid':false});});
-      p.addEventListener('mousemove',function(ev){showTip(ev,f.properties.n+(g?' · '+DATA.typen[g.typ]:''));});p.addEventListener('mouseleave',hideTip);
+      p.addEventListener('mousemove',function(ev){showTip(ev,f.properties.n+(g?' · '+ty(g.typ):''));});p.addEventListener('mouseleave',hideTip);
       gM.appendChild(p);});
     cantons.forEach(function(f){var k=f.properties.k,kk=DATA.kantone[k]||{typ:'none'};cantonBox[k]=bboxOf(f.geometry);
-      var p=el('path',{d:pathOf(f.geometry),'class':'canton t-'+kk.typ+((kk.gemeinden||[]).length?' has-gem':''),'data-k':k,'aria-label':names[k]});
+      var p=el('path',{d:pathOf(f.geometry),'class':'canton t-'+kk.typ+((kk.gemeinden||[]).length?' has-gem':''),'data-k':k,'aria-label':nm(k)});
       p.addEventListener('click',function(){selectCanton(k,null,{scroll:narrow()?'grid':false});});
-      p.addEventListener('mousemove',function(ev){showTip(ev,names[k]+' · '+DATA.typen[kk.typ]);});p.addEventListener('mouseleave',hideTip);
+      p.addEventListener('mousemove',function(ev){showTip(ev,nm(k)+' · '+ty(kk.typ));});p.addEventListener('mouseleave',hideTip);
       gC.appendChild(p);
-      var o=document.createElement('option');o.value=k;o.textContent=names[k];sel.appendChild(o);});
+      var o=document.createElement('option');o.value=k;o.textContent=nm(k);sel.appendChild(o);});
     lakes.forEach(function(f){gL.appendChild(el('path',{d:pathOf(f.geometry),'class':'lake'}));});
     svg.appendChild(gM);svg.appendChild(gC);svg.appendChild(gL);
     /* Kantonskürzel: nur wo Platz ist, Farbe je nach Untergrund */
@@ -138,9 +143,9 @@
     back.addEventListener('click',function(){selectCanton(null);});
     sel.addEventListener('change',function(){selectCanton(this.value||null,null,{scroll:narrow()?'grid':false});});
     gemSel.addEventListener('change',function(){if(this.value)selectCanton(selected.k,+this.value,{scroll:narrow()?'grid':false});else selectCanton(selected.k,null);});
-    if(bund)bund.innerHTML='<h3>'+esc(DATA.bund.titel)+'</h3>'+li(DATA.bund.items);
-    var st=document.getElementById('standDatum');if(st)st.textContent='Stand '+fmt(DATA.stand);
-    var gc=document.getElementById('geoCredit');if(gc)gc.textContent=DATA.geodaten||'';
+    if(bund)bund.innerHTML='<h3>'+esc(T(DATA.bund.titel))+'</h3>'+li(DATA.bund.items)+onlyDe();
+    var st=document.getElementById('standDatum');if(st)st.textContent=T('Stand {date}',{date:fmt(DATA.stand)});
+    var gc=document.getElementById('geoCredit');if(gc)gc.textContent=DATA.geodaten?T(DATA.geodaten):'';
     window.regelradar={select:selectCanton,kantonOf:function(bfs){return (muniByBfs[bfs]||{}).k||null;}};
     fromHash(true);
     document.dispatchEvent(new CustomEvent('regelradar:ready'));
@@ -158,5 +163,5 @@
 
   Promise.all([fetch('/data/regeln.json').then(function(r){return r.json();}),fetch('/data/ch.json').then(function(r){return r.json();})])
     .then(function(res){DATA=res[0];TOPO=res[1];build();})
-    .catch(function(e){console.error(e);panel.innerHTML='<h3>Regelradar</h3><p>Die Karte konnte nicht geladen werden. Alle Kantone findest du <a href=\"/regeln\">als Liste</a>.</p>';});
+    .catch(function(e){console.error(e);panel.innerHTML='<h3>'+esc(T('Regelradar'))+'</h3><p>'+esc(T('Die Karte konnte nicht geladen werden. Alle Kantone findest du'))+' <a href="/regeln">'+esc(T('als Liste'))+'</a>.</p>';});
 })();
