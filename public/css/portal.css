@@ -34,3 +34,7 @@ td.actions .btn+.btn{margin-left:8px}
 .btn.small{padding:8px 18px;font-size:.92rem}
 select{font:inherit;padding:8px 12px;border-radius:12px;border:2px solid #000;background:#fff}
 @media (max-width:760px){table,thead,tbody,tr,td,th{display:block}thead{display:none}td{border:0;padding:4px 0}tr{border-top:1px solid var(--grey-mid);padding:14px 0}td.actions{text-align:left;margin-top:8px}}
+.check-list{list-style:none;columns:2;column-gap:32px}
+.check-list li{break-inside:avoid;padding:8px 0 8px 26px;position:relative;border-top:1px solid var(--grey-mid)}
+.check-list li::before{content:"✓";position:absolute;left:0;color:var(--red);font-weight:700}
+@media (max-width:760px){.check-list{columns:1}}

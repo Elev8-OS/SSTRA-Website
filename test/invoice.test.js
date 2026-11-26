@@ -26,24 +26,24 @@ test('Link-Signatur: gültig, manipuliert, fremde Nummer', () => {
   assert.equal(inv.numberFromToken('R-2026-0002_' + t.split('_').slice(1).join('_')), null);
 });
 
-test('Freigabe stellt eine QR-Rechnung über CHF 199 mit 10 Tagen Frist und PDF-Anhang aus', async () => {
-  const c = await ghl.upsertContact({ email: 'eva@muster.ch', firstName: 'Eva', lastName: 'Muster', companyName: 'Muster Ferien GmbH', tags: ['antrag:offen', 'kategorie:gastgeber', 'zahlung:rechnung'] });
+test('Freigabe stellt eine QR-Rechnung über CHF 199 mit 30 Tagen Frist und PDF-Anhang aus', async () => {
+  const c = await ghl.upsertContact({ email: 'eva@muster.ch', firstName: 'Eva', lastName: 'Muster', companyName: 'Muster Ferien GmbH', tags: ['antrag:offen', 'kategorie:stufe-1', 'zahlung:rechnung'] });
   const r = await approveApplication({ ghl, payments: createPayments(), contactId: c.id });
   assert.equal(r.mode, 'invoice'); assert.match(r.number, /^R-\d{4}-0001$/);
   const mail = ghl.outbox.at(-1);
   assert.match(mail.subject, /Rechnung R-\d{4}-0001/);
   assert.equal(mail.attachments.length, 1);
-  assert.ok(mail.html.includes('CHF 199') && mail.html.includes('10 Tagen'));
+  assert.ok(mail.html.includes('CHF 199') && mail.html.includes('30 Tagen'));
   const pdf = await fetch(mail.attachments[0].replace(/^https?:\/\/[^/]+/, base));
   assert.equal(pdf.status, 200); assert.equal(pdf.headers.get('content-type'), 'application/pdf');
   const buf = Buffer.from(await pdf.arrayBuffer());
   assert.equal(buf.subarray(0, 4).toString(), '%PDF'); assert.ok(buf.length > 5000);
   assert.equal((await fetch(base + '/rechnung/R-2026-0001_falsch.pdf')).status, 404);
   const due = (await import('../lib/store.js')).store; const rec = await due.getInvoice(r.number);
-  assert.equal(Math.round((new Date(rec.due) - new Date(rec.issued)) / 864e5), 10);
+  assert.equal(Math.round((new Date(rec.due) - new Date(rec.issued)) / 864e5), 30);
 });
 
 test('Nächste Rechnung bekommt die nächste Nummer', async () => {
-  const c = await ghl.upsertContact({ email: 'ben@muster.ch', firstName: 'Ben', lastName: 'Muster', tags: ['antrag:offen', 'kategorie:gastgeber'] });
+  const c = await ghl.upsertContact({ email: 'ben@muster.ch', firstName: 'Ben', lastName: 'Muster', tags: ['antrag:offen', 'kategorie:stufe-1'] });
   assert.match((await approveApplication({ ghl, payments: createPayments(), contactId: c.id })).number, /-0002$/);
 });

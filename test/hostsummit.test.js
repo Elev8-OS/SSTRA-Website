@@ -17,7 +17,7 @@ test('Host Summit: Übersicht, Ankündigung 2027 und Rückblick 2026', async () 
   const [, o] = await get('/hostsummit');
   assert.ok(o.includes('30. Oktober 2027') && o.includes('/hostsummit/2026') && o.includes('/hostsummit/2027'));
   const [, n] = await get('/hostsummit/2027');
-  assert.ok(n.includes('Samstag, 30. Oktober 2027') && n.includes('Ort und Programm') && n.includes('CHF 199') && n.includes('"startDate":"2027-10-30"'));
+  assert.ok(n.includes('Samstag, 30. Oktober 2027') && n.includes('Ort und Programm') && n.includes('CHF 20') && n.includes('"startDate":"2027-10-30"'));
   const [, v] = await get('/hostsummit/2026');
   for (const s of ['FHNW Campus Olten', 'Thomas Marbet', 'Jannik Abraham', 'Gründung des Verbands', 'Programm laut Ankündigung', 'Hotel Inside', 'Tages-Anzeiger', 'Die Fotos folgen']) assert.ok(v.includes(s), s);
   assert.equal((await fetch(base + '/hostsummit/2030')).status, 404);

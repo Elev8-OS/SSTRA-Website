@@ -1,0 +1,41 @@
+{
+  "stand": "Beitrags- und Gebührenordnung, gültig ab 1. Januar 2027",
+  "hinweis": "Die Beitragsordnung gilt ab 1. Januar 2027 und wird von der Mitgliederversammlung beschlossen.",
+  "start": "2027-01-01",
+  "faelligkeit": "31. März",
+  "alle": {
+    "titel": "Leistungen für alle Mitglieder",
+    "lead": "Diese Leistungen stehen allen Mitgliedern zu, vom Einzelmitglied bis zur Stufe 6.",
+    "items": [
+      { "t": "Vergünstigung auf Konferenztickets: CHF 20 pro Ticket, bis drei Tickets pro Jahr", "wert": "bis CHF 60" },
+      { "t": "Zugang zur jährlichen Marktstudie inklusive Kennzahlen und Rohdaten", "wert": "CHF 150" },
+      { "t": "Vorlagen, Musterverträge und Checklisten im Mitgliederbereich", "wert": "CHF 250" },
+      { "t": "Aufzeichnungen aller Webinare und Referate im Mitgliederbereich", "wert": "CHF 120" },
+      { "t": "Mitglieder-Badge für die eigene Website und für Inserate" },
+      { "t": "Eintrag im öffentlichen Mitgliederverzeichnis auf der Verbandswebsite" },
+      { "t": "Newsletter mit Branchenmonitoring, Rechtsänderungen und Terminen" },
+      { "t": "Teilnahme an regionalen Stammtischen und am Erfahrungsaustausch" }
+    ],
+    "summe": "rund CHF 580",
+    "fussnote": "Die Richtwerte ordnen den Gegenwert ein. Sie begründen keinen Anspruch auf Auszahlung oder Verrechnung."
+  },
+  "zusatz": {
+    "titel": "Zusätzlich ab Stufe 1",
+    "lead": "Ab Stufe 1 kommen persönliche Leistungen dazu. Einzelmitglieder haben darauf keinen Anspruch. Den Umfang je Stufe legt der Vorstand fest.",
+    "spalten": ["Stufe 1", "Stufe 2", "Stufe 3 und 4", "Stufe 5 und 6"],
+    "items": [
+      { "t": "Elev8-Suite: Upgrade auf das nächstgrössere Abomodell (1 bis 4 Objekte zahlen, 5 bis 9 erhalten; 5 bis 9 zahlen, 10 bis 19 erhalten usw.)", "v": [1, 1, 1, 1] },
+      { "t": "Elev8-Suite: persönlicher Account Manager", "v": [0, 0, 1, 1] },
+      { "t": "Visionary Apartments Coaching: 10 % Rabatt auf die Coaching-Kurse", "v": [1, 1, 1, 1] },
+      { "t": "Exklusiver Zugang zu den KeyData-Daten", "v": [0, 1, 1, 1] },
+      { "t": "Shelly-Starterpaket im Wert von CHF 199, inklusive Elev8 Bridge im Wert von CHF 69", "v": [1, 1, 1, 1] },
+      { "t": "Rechtsberatung im quartalsweisen Teams-Call", "v": [1, 1, 1, 1] },
+      { "t": "Persönliche Rechtsberatung per E-Mail, eine Anfrage pro Quartal (Fair-Use-Policy)", "v": [0, 1, 1, 1] },
+      { "t": "Internetabo ohne Mindestlaufzeit zu Verbandskonditionen (Glasfaser und Kupfer, schweizweit)", "v": [0, 1, 1, 1] }
+    ]
+  },
+  "einzel": "Die Einzelmitgliedschaft richtet sich an Gastgeberinnen und Gastgeber mit höchstens drei Objekten, die nebenberuflich vermieten. Der Umsatz spielt keine Rolle. Wer mehr als drei Objekte bewirtschaftet, hauptberuflich oder gewerbsmässig vermietet oder Dienstleistungen und Software für die Kurzzeitvermietung anbietet, wechselt in Stufe 1 oder höher.",
+  "umsatz": "Für die Stufen 1 bis 6 zählt der Vorjahresumsatz aus der Kurzzeitvermietung: bei eigenen Objekten die Mieterträge, bei fremden Objekten die eigenen Honorare, Provisionen und Servicegebühren (ohne durchlaufende Mieterträge der Eigentümer), bei Dienstleistern und Plattformen die Erträge aus Produkten und Leistungen für die Kurzzeitvermietung. Bei internationalen Unternehmen zählt der weltweite Umsatz aus diesem Geschäftsfeld. Du deklarierst den Umsatz selbst, bei Eintritt und danach bis zum 31. Januar. Der Vorstand kann einen Nachweis verlangen.",
+  "zahlung": "Der Beitrag gilt für das Kalenderjahr. Er ist bis zum 31. März fällig. Bei einem Eintritt im Lauf des Jahres wird er monatsanteilig berechnet und ist 30 Tage nach der Bestätigung der Mitgliedschaft fällig. Bezahlte Beiträge werden bei Austritt oder Ausschluss nicht zurückerstattet.",
+  "stimmrecht": "Alle Mitglieder haben Stimmrecht an der Mitgliederversammlung. Es gibt eine einzige Beitragstabelle: Gastgeber, Property Manager und Dienstleister werden nicht unterschieden."
+}

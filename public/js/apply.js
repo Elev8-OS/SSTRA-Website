@@ -5,11 +5,11 @@
   if (params.get('abgebrochen')) document.getElementById('cancelled').hidden = false;
 
   fetch('/api/plans').then(function (r) { return r.json(); }).then(function (plans) {
-    var box = document.getElementById('plans'), pre = params.get('plan') || 'gastgeber';
+    var box = document.getElementById('plans'), pre = params.get('plan') || 'einzel';
     box.innerHTML = '';
     plans.forEach(function (p, i) {
       var l = document.createElement('label');
-      var price = p.amountChf ? T('CHF {n} / Jahr', { n: p.amountChf }) : T('Preis folgt');
+      var price = T('CHF {n} / Jahr', { n: p.amountChf });
       l.innerHTML = '<input type="radio" name="plan" value="' + p.key + '"><span></span>';
       l.querySelector('input').checked = (p.key === pre) || (!plans.some(function (x) { return x.key === pre; }) && i === 0);
       var s = l.querySelector('span'); s.textContent = T(p.name) + ' (' + price + ')';

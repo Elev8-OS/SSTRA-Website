@@ -25,6 +25,15 @@ Vorstand  ──► /vorstand                 │
 | `pay:<id>` | letzte Zahlung (verhindert Doppelverarbeitung) |
 | `kanton:lu`, `newsletter`, `kontakt`, `einwilligung:*` | Zusatzinfos |
 
+**Mitgliedschaft und Beiträge** (Beitrags- und Gebührenordnung, gültig ab 1. Januar 2027)
+
+| Stufe (`kategorie:`) | Kriterium | Jahresbeitrag |
+|---|---|---|
+| `einzel` | höchstens 3 Objekte, nebenberuflich | CHF 90 |
+| `stufe-1` bis `stufe-6` | Vorjahresumsatz aus der Kurzzeitvermietung | CHF 199 / 450 / 900 / 1'500 / 3'000 / 6'000 |
+
+Alle Stufen haben die Rolle `mitglied` (Stimmrecht). Beiträge und Stufen stehen in `config/plans.json`, Leistungen und Texte in `public/data/mitgliedschaft.json`. Die Berechnung (`lib/fees.js`): Beitrag gilt fürs Kalenderjahr (Ablauf 31.12.), Eintritt im Jahr monatsanteilig, Eintritt vor 2027 ganzes Jahr 2027, Erneuerung ein volles Folgejahr. Zahlungsfrist Rechnung: 30 Tage. Die Rolle `foerdermitglied` bleibt technisch bestehen (Vorstand vergibt sie von Hand), ist aber keine wählbare Mitgliedschaft mehr.
+
 **Rechte**
 
 | Bereich | Fördermitglied | Mitglied | Vorstand | Admin |
@@ -60,7 +69,7 @@ Der Verband braucht eine eigene GHL-Subaccount-Location, getrennt vom Vertriebs-
 1. Konto aktivieren, **TWINT** im Dashboard unter Zahlungsmethoden einschalten (Anforderungen von TWINT beachten; Betragslimit bei TWINT-Einmalzahlungen: CHF 5000).
 2. Webhook anlegen: `https://DEINE-DOMAIN/api/stripe/webhook`, Ereignis `checkout.session.completed` ➜ Signing Secret ➜ `STRIPE_WEBHOOK_SECRET`.
 3. `STRIPE_SECRET_KEY` setzen. Erst im Testmodus prüfen, dann auf Live umstellen.
-4. **Beiträge festlegen** in `config/plans.json` (`amountChf`). Solange `null` steht, läuft alles über Rechnung.
+4. **Beiträge** stehen in `config/plans.json` (`amountChf`), die Berechnung in `lib/fees.js`.
 
 ### 3. Railway
 1. Neues Railway-Projekt ➜ „Deploy from GitHub“ ➜ dieses Repo wählen.
@@ -75,7 +84,7 @@ Der Verband braucht eine eigene GHL-Subaccount-Location, getrennt vom Vertriebs-
 ```
 npm install
 npm start        # ohne Schlüssel: Mock-Modus (Daten nur im Speicher, Zahlungs-Simulator)
-npm test         # 12 End-to-End-Tests
+npm test         # End-to-End-Tests
 ```
 Im Mock-Modus wird keine echte Mail verschickt. Der Test-Code zeigt, wie der Login-Link aus dem Outbox gelesen wird. Im Produktivmodus (`NODE_ENV=production`) startet der Server nur mit vollständiger Konfiguration.
 
@@ -89,7 +98,7 @@ Im Mock-Modus wird keine echte Mail verschickt. Der Test-Code zeigt, wie der Log
 ## Vor dem Livegang zu prüfen
 - [ ] **Repo auf privat stellen** (Settings ➜ Danger Zone ➜ Change visibility).
 - [ ] **GHL-Aufrufe im Livebetrieb testen.** Der Code ist gegen die GHL-API v2 geschrieben, konnte aber nicht gegen ein echtes Konto laufen. Besonders prüfen: Kontaktsuche per E-Mail (`/contacts/search/duplicate`), Tag-Suche für die Vorstandsliste (`/contacts/search`), E-Mail-Versand (`/conversations/messages`). Anpassungen stehen alle in `lib/ghl.js`.
-- [ ] Beiträge in `config/plans.json`, Statuten, Impressum und Datenschutzerklärung (Platzhalter-Seiten) erstellen lassen.
+- [ ] Beitragsordnung von der Mitgliederversammlung beschliessen lassen (Datum in der PDF noch offen), IBAN in `INVOICE_IBAN`, Statuten, Impressum und Datenschutzerklärung (Platzhalter-Seiten) erstellen lassen.
 - [ ] Inhalte der Kanton-Regelkarte (`public/js/site.js`) juristisch prüfen und mit Quellen versehen.
 - [ ] `package-lock.json` erzeugen (`npm install`) und einchecken, damit Abhängigkeiten fest gepinnt sind.
 - [ ] Mehrere Server-Instanzen: Magic-Link-Speicher und Cache (`lib/auth.js`) wären dann in Redis auszulagern. Eine Instanz reicht für den Start.

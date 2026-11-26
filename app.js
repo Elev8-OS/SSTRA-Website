@@ -14,6 +14,7 @@ import { esc, page, mailHtml, ROLE_LABEL } from './lib/views.js';
 import { mountRegions } from './lib/regions.js';
 import { mountAddress } from './lib/address.js';
 import { mountGate } from './lib/gate.js';
+import { benefitsFor } from './lib/mitgliedschaft.js';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const clean = (v, max = 200) => String(v ?? '').trim().slice(0, max);
@@ -56,7 +57,7 @@ export function createApp({ ghl, payments, geoFetch }) {
     try {
       if (event.type === 'checkout.session.completed' && event.data.object.payment_status === 'paid') {
         const s = event.data.object;
-        await activateMember({ ghl, email: s.metadata.email, planKey: s.metadata.plan, ref: s.id });
+        await activateMember({ ghl, email: s.metadata.email, planKey: s.metadata.plan, ref: s.id, until: s.metadata.until });
         users.invalidate(s.metadata.email);
       }
       res.json({ received: true });
@@ -75,7 +76,7 @@ export function createApp({ ghl, payments, geoFetch }) {
 
   // ---- Öffentliche API ----
   app.get('/api/plans', (_req, res) => {
-    res.json(Object.entries(config.plans).map(([key, p]) => ({ key, name: p.name, description: p.description, amountChf: p.amountChf, role: p.role })));
+    res.json(Object.entries(config.plans).map(([key, p]) => ({ key, name: p.name, description: p.description, amountChf: p.amountChf, role: p.role, tier: p.tier })));
   });
 
   app.post('/api/newsletter', limiter(10), async (req, res) => {
@@ -143,7 +144,7 @@ export function createApp({ ghl, payments, geoFetch }) {
       const { email, plan } = readPayToken(String(req.query.token || ''));
       const contact = await ghl.getContactByEmail(email);
       if (!contact) return res.status(404).send('Antrag nicht gefunden');
-      const url = await payments.createCheckout({ email, planKey: plan, contactId: contact.id });
+      const url = await payments.createCheckout({ email, planKey: plan, contactId: contact.id, until: tagValue(contact.tags, 'bis:') });
       res.redirect(303, url);
     } catch (e) {
       console.error(e.message);
@@ -152,7 +153,7 @@ export function createApp({ ghl, payments, geoFetch }) {
   });
   app.post('/mitglieder/erneuern', requireRole(['mitglied', 'foerdermitglied'], { allowExpired: true }), async (req, res) => {
     try {
-      const url = await payments.createCheckout({ email: req.user.email, planKey: req.user.plan, contactId: req.user.contactId });
+      const url = await payments.createCheckout({ email: req.user.email, planKey: req.user.plan, contactId: req.user.contactId, until: req.user.until });
       res.redirect(303, url);
     } catch (e) { res.status(400).send(esc(e.message)); }
   });
@@ -218,7 +219,8 @@ export function createApp({ ghl, payments, geoFetch }) {
         <div><dt>Kategorie</dt><dd>${esc(config.plans[u.plan]?.name || '–')}</dd></div>
         <div><dt>Mitglied seit</dt><dd>${fmt(u.since)}</dd></div>
         <div><dt>Beitrag gültig bis</dt><dd>${isBoard(u.role) && !u.until ? '–' : fmt(u.until)}</dd></div></dl></div>
-      <div class="card"><h2 class="h-m">Dokumente und Wissen</h2>${visible.length ? `<ul class="doclist">${visible.map((d) => `<li><a href="/mitglieder/dok/${esc(d.slug)}">${esc(d.title)}</a><span>${esc(d.summary || '')}</span></li>`).join('')}</ul>` : '<p>Aktuell keine Dokumente für deine Rolle.</p>'}</div></div>` }));
+      <div class="card"><h2 class="h-m">Dokumente und Wissen</h2>${visible.length ? `<ul class="doclist">${visible.map((d) => `<li><a href="/mitglieder/dok/${esc(d.slug)}">${esc(d.title)}</a><span>${esc(d.summary || '')}</span></li>`).join('')}</ul>` : '<p>Aktuell keine Dokumente für deine Rolle.</p>'}</div></div>
+      <div class="card" style="margin-top:24px"><h2 class="h-m">Deine Leistungen</h2>${(() => { const b = benefitsFor(u.plan); if (!b.alle.length || u.expired) return '<p>Leistungen siehst du bei aktiver Mitgliedschaft.</p>'; return `<ul class="check-list">${[...b.alle, ...b.zusatz].map((t) => `<li>${esc(t)}</li>`).join('')}</ul>`; })()}</div>` }));
   });
 
   app.get('/mitglieder/dok/:slug', member, (req, res) => {
