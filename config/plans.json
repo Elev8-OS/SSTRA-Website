@@ -1,31 +1,58 @@
 {
-  "gastgeber": {
-    "name": "Gastgeber",
+  "einzel": {
+    "name": "Einzelmitglied",
+    "role": "mitglied",
+    "amountChf": 90,
+    "requireApproval": true,
+    "tier": 0,
+    "description": "Höchstens 3 Objekte, nebenberuflich. Auch für Interessierte und Personen in der Startphase."
+  },
+  "stufe-1": {
+    "name": "Stufe 1",
     "role": "mitglied",
     "amountChf": 199,
     "requireApproval": true,
-    "description": "Für Eigentümerinnen und Eigentümer, die selbst vermieten. Inklusive 1 Ticket für den jährlichen Host Summit.",
-    "includesTicket": true
+    "tier": 1,
+    "description": "Umsatz bis CHF 500'000."
   },
-  "property-manager": {
-    "name": "Property Manager",
+  "stufe-2": {
+    "name": "Stufe 2",
     "role": "mitglied",
-    "amountChf": null,
+    "amountChf": 450,
     "requireApproval": true,
-    "description": "Für Unternehmen, die Objekte für andere betreiben."
+    "tier": 2,
+    "description": "Umsatz CHF 500'001 bis CHF 1,5 Mio."
   },
-  "regionalgruppe": {
-    "name": "Regionalgruppe",
+  "stufe-3": {
+    "name": "Stufe 3",
     "role": "mitglied",
-    "amountChf": null,
+    "amountChf": 900,
     "requireApproval": true,
-    "description": "Für Gastgeber-Zusammenschlüsse in Kanton oder Gemeinde."
+    "tier": 3,
+    "description": "Umsatz CHF 1,5 Mio. bis CHF 5 Mio."
   },
-  "foerdermitglied": {
-    "name": "Fördermitglied",
-    "role": "foerdermitglied",
-    "amountChf": null,
+  "stufe-4": {
+    "name": "Stufe 4",
+    "role": "mitglied",
+    "amountChf": 1500,
     "requireApproval": true,
-    "description": "Für Technologie-, Service- und Plattformpartner. Ohne Stimmrecht."
+    "tier": 4,
+    "description": "Umsatz CHF 5 Mio. bis CHF 20 Mio."
+  },
+  "stufe-5": {
+    "name": "Stufe 5",
+    "role": "mitglied",
+    "amountChf": 3000,
+    "requireApproval": true,
+    "tier": 5,
+    "description": "Umsatz CHF 20 Mio. bis CHF 100 Mio."
+  },
+  "stufe-6": {
+    "name": "Stufe 6",
+    "role": "mitglied",
+    "amountChf": 6000,
+    "requireApproval": true,
+    "tier": 6,
+    "description": "Umsatz über CHF 100 Mio."
   }
 }

@@ -76,7 +76,7 @@ test('Formularseiten sind übersetzt, die Schnittstellen bleiben unverändert', 
   const [, l] = await txt('/fr/login.html'); assert.ok(l.includes('Connexion des membres') && l.includes('lang="fr-CH"'));
   const [, a] = await txt('/en/mitglied-werden.html'); assert.ok(a.includes('Become a member') && a.includes('First name *') && a.includes('<option value="ge">Geneva</option>'));
   const [, a2] = await txt('/mitglied-werden.html'); assert.ok(a2.includes('Vorname *'));
-  const plans = await (await get('/api/plans')).json(); assert.equal(plans[0].name, 'Gastgeber');
+  const plans = await (await get('/api/plans')).json(); assert.equal(plans[0].name, 'Einzelmitglied');
   assert.equal((await get('/fr/api/plans')).status, 404, 'Schnittstellen haben kein Präfix');
 });
 

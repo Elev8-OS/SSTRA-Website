@@ -49,7 +49,7 @@ test('Medienseite und Teaser auf der Startseite; Video erscheint nur, wenn die D
   const [, m] = await txt('/medien');
   for (const s of ['SRF', '10vor10', 'Hotel Inside', 'Tages-Anzeiger', 'So zitierst du uns', 'regeln.csv', 'Beitrag bei SRF Play ansehen']) assert.ok(m.includes(s), s);
   assert.ok(!m.includes('<video') || m.includes('srf-10vor10-2026-10-21.mp4'));
-  const [, h] = await txt('/'); assert.ok(h.includes('In den Medien') && h.includes('href="/medien"') && h.includes('CHF 199') && h.includes('SRF 10vor10'));
+  const [, h] = await txt('/'); assert.ok(h.includes('In den Medien') && h.includes('href="/medien"') && h.includes('CHF 90') && h.includes('SRF 10vor10'));
   assert.ok(!h.includes('entsteht die erste'));
   const [, v] = await txt('/verband'); assert.ok(v.includes('CHF 199') && v.includes('Standards') && v.includes('id="mitglied"'));
   const [, a] = await txt('/aktuell'); assert.ok(a.includes('Als Nächstes') && a.includes('Zuletzt passiert') && a.includes('Zahlen, die die Debatte prägen'));

@@ -164,3 +164,45 @@ main>section:where(:not(.hero)){padding:clamp(56px,7vw,96px) 0}
 .sec-head{margin-bottom:clamp(28px,4vw,48px)}
 .sec-head .lead{margin-top:18px}
 .calm{padding-top:clamp(32px,4vw,56px)}
+
+/* ============ Mitgliedschaft: Beitragstabelle und Leistungen ============ */
+.fee-h{margin:48px 0 18px}
+.fee-wrap{overflow-x:auto}
+.fee-table,.matrix{width:100%;border-collapse:collapse;font-size:1rem}
+.fee-table th,.fee-table td,.matrix th,.matrix td{padding:14px 12px;border-bottom:1px solid var(--grey-mid);text-align:left;vertical-align:middle}
+.fee-table thead th,.matrix thead th{font-size:.85rem;text-transform:uppercase;letter-spacing:.05em;color:var(--grey-text);border-bottom:2px solid #000}
+.fee-table tbody th{font-weight:600;font-size:1.1rem;white-space:nowrap}
+.fee-table .num{text-align:right;white-space:nowrap;font-weight:500}
+.fee-table .act{text-align:right;white-space:nowrap}
+.fee-table .fee-einzel{background:var(--grey)}
+.benefits{display:grid;grid-template-columns:1fr;gap:24px;margin-top:40px}
+.benefit-card{background:var(--grey);border-radius:var(--radius-panel);padding:clamp(24px,3.5vw,44px)}
+.benefit-card .muted{color:var(--grey-text);margin:8px 0 18px}
+.benefit-list{list-style:none}
+.benefit-list li{display:flex;justify-content:space-between;gap:20px;padding:12px 0;border-top:1px solid var(--grey-mid)}
+.benefit-list li:first-child{border-top:0}
+.benefit-list em{font-style:normal;font-weight:600;white-space:nowrap;color:var(--grey-text)}
+.benefit-sum{margin-top:14px;padding-top:14px;border-top:2px solid #000}
+.matrix tbody th{font-weight:400}
+.matrix .c{text-align:center;width:11%}
+.matrix .yes{color:var(--red);font-weight:700;font-size:1.2rem}
+.matrix .no{color:#9a9a9a}
+.fee-rules{margin-top:32px;max-width:52em}
+.fee-rules details{border-top:1px solid var(--grey-mid);padding:14px 0}
+.fee-rules summary{cursor:pointer;font-weight:600}
+.fee-rules p{margin-top:10px;color:var(--grey-text)}
+.sr-only{position:absolute;left:-9999px}
+@media (max-width:760px){
+  .fee-table thead,.matrix thead{display:none}
+  .fee-table,.fee-table tbody,.fee-table tr,.fee-table th,.fee-table td{display:block}
+  .fee-table tr{padding:14px 0;border-bottom:1px solid var(--grey-mid)}
+  .fee-table th,.fee-table td{border:0;padding:3px 12px}
+  .fee-table .num,.fee-table .act{text-align:left}
+  .fee-table .act{padding-top:8px}
+  .matrix,.matrix tbody,.matrix tr,.matrix th,.matrix td{display:block}
+  .matrix tr{padding:12px 0;border-bottom:1px solid var(--grey-mid)}
+  .matrix th,.matrix td{border:0;padding:2px 0;text-align:left;width:auto}
+  .matrix td{display:inline-block;width:24%;text-align:center;vertical-align:top;padding-top:6px}
+  .matrix td::before{content:attr(data-label);display:block;min-height:3.6em;color:var(--grey-text);font-size:.68rem;line-height:1.2;margin-bottom:2px}
+  .benefit-list li{flex-direction:column;gap:2px}
+}

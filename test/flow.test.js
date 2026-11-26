@@ -35,7 +35,8 @@ async function login(email) {
 test('Health und Pläne', async () => {
   assert.equal((await get('/health')).status, 200);
   const plans = await (await get('/api/plans')).json();
-  assert.equal(plans.length, 4);
+  assert.equal(plans.length, 7);
+  assert.deepEqual(plans.map((p) => p.amountChf), [90, 199, 450, 900, 1500, 3000, 6000]);
 });
 
 test('Newsletter: Kontakt mit Tags, Bot wird ignoriert', async () => {
@@ -48,10 +49,10 @@ test('Newsletter: Kontakt mit Tags, Bot wird ignoriert', async () => {
 });
 
 test('Antrag wird als Kontakt mit Tags und Notiz angelegt', async () => {
-  const r = await post('/api/apply', { plan: 'gastgeber', firstName: 'Anna', lastName: 'Muster', email: 'anna@x.ch', canton: 'LU', consent: true, payment: 'online', elapsed: 5000 });
+  const r = await post('/api/apply', { plan: 'stufe-1', firstName: 'Anna', lastName: 'Muster', email: 'anna@x.ch', canton: 'LU', consent: true, payment: 'online', elapsed: 5000 });
   assert.equal(r.status, 200);
   const c = await ghl.getContactByEmail('anna@x.ch');
-  assert.ok(c.tags.includes('antrag:offen') && c.tags.includes('kategorie:gastgeber') && c.tags.includes('kanton:lu'));
+  assert.ok(c.tags.includes('antrag:offen') && c.tags.includes('kategorie:stufe-1') && c.tags.includes('kanton:lu'));
   assert.ok(ghl.events.some((e) => e.event === 'application.received'));
   assert.equal((await post('/api/apply', { plan: 'unbekannt', firstName: 'A', lastName: 'B', email: 'a@b.ch', consent: true, elapsed: 5000 })).status, 400);
 });
@@ -102,8 +103,8 @@ test('Zahlung bestätigen aktiviert Mitglied, idempotent', async () => {
   assert.ok(c.tags.includes('status:aktiv') && c.tags.includes('rolle:mitglied'));
   assert.ok(c.tags.some((t) => t.startsWith('bis:')) && c.tags.some((t) => t.startsWith('seit:')));
   const mails = ghl.outbox.length;
-  const res = await activateMember({ ghl, email: 'anna@x.ch', planKey: 'gastgeber', ref: 'cs_test_1' });
-  const res2 = await activateMember({ ghl, email: 'anna@x.ch', planKey: 'gastgeber', ref: 'cs_test_1' });
+  const res = await activateMember({ ghl, email: 'anna@x.ch', planKey: 'stufe-1', ref: 'cs_test_1' });
+  const res2 = await activateMember({ ghl, email: 'anna@x.ch', planKey: 'stufe-1', ref: 'cs_test_1' });
   assert.equal(res.already, false);
   assert.equal(res2.already, true);
   assert.equal(ghl.outbox.length, mails + 1);
@@ -137,8 +138,10 @@ test('Admin befördert Mitglied zum Vorstand, dann Zugriff auf Vorstandsunterlag
 });
 
 test('Fördermitglied sieht nur Partner-Inhalte; abgelaufener Beitrag sperrt Inhalte', async () => {
-  await post('/api/apply', { plan: 'foerdermitglied', firstName: 'Pia', lastName: 'Partner', email: 'pia@partner.ch', consent: true, payment: 'rechnung', elapsed: 5000 });
-  await activateMember({ ghl, email: 'pia@partner.ch', planKey: 'foerdermitglied', ref: 'cs_p' });
+  await post('/api/apply', { plan: 'stufe-2', firstName: 'Pia', lastName: 'Partner', email: 'pia@partner.ch', consent: true, payment: 'rechnung', elapsed: 5000 });
+  await activateMember({ ghl, email: 'pia@partner.ch', planKey: 'stufe-2', ref: 'cs_p' });
+  const pc = await ghl.getContactByEmail('pia@partner.ch');
+  await ghl.removeTags(pc.id, ['rolle:mitglied']); await ghl.addTags(pc.id, ['rolle:foerdermitglied']); // Partnerrolle wird vom Vorstand vergeben
   const pia = await login('pia@partner.ch');
   const home = await (await get('/mitglieder', pia.cookie)).text();
   assert.ok(home.includes('Fördermitglieder') && !home.includes('Steuern und Kurtaxe'));
